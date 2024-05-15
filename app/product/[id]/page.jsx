@@ -3,7 +3,7 @@ import ProductDetail from "@/components/productDetails/ProductDetail";
 import RelatedProduct from "@/components/productDetails/RelatedProduct";
 import BreadCrumb from "@/components/shared/BreadCrumb";
 
-const Product = () => {
+const ProductDetailsPage = () => {
   return (
     <>
       <BreadCrumb />
@@ -14,4 +14,4 @@ const Product = () => {
   );
 };
 
-export default Product;
+export default ProductDetailsPage;

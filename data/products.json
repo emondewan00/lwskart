@@ -1,0 +1,404 @@
+{
+  "products": [
+    {
+      "name": "Cozy King Size Bed",
+      "image": [
+        "https://source.unsplash.com/random/360x265?bedroom",
+        "https://source.unsplash.com/random/360x265?bedroom",
+        "https://source.unsplash.com/random/360x265?bedroom"
+      ],
+      "price": 799,
+      "discount_price": 699,
+      "reviewsNumber": 120,
+      "ratings": 4.5,
+      "availability": true,
+      "brand": "Dreamy Furniture",
+      "category": "Bedroom",
+      "details": "Solid wood construction, upholstered headboard",
+      "description": "Indulge in luxurious comfort with our cozy king-size bed. Crafted from high-quality materials, this bed promises a good night's sleep every time.",
+      "sizes": ["L", "XL", "XXL"],
+      "colors": ["Gray", "White"],
+      "inStock": 50
+    },
+    {
+      "name": "Elegant Nightstand",
+      "image": [
+        "https://source.unsplash.com/random/360x265?bedroom",
+        "https://source.unsplash.com/random/360x265?bedroom",
+        "https://source.unsplash.com/random/360x265?bedroom"
+      ],
+      "price": 149,
+      "discount_price": null,
+      "reviewsNumber": 85,
+      "ratings": 4.2,
+      "availability": true,
+      "brand": "Chic Home Furnishings",
+      "category": "Bedroom",
+      "details": "Solid wood construction, two drawers",
+      "description": "Add a touch of elegance to your bedroom with our stylish nightstand. Its sleek design and ample storage space make it a perfect bedside companion.",
+      "sizes": ["S", "M", "L"],
+      "colors": ["Black", "White", "Brown"],
+      "inStock": 30
+    },
+    {
+      "name": "Comfortable Queen Size Mattress",
+      "image": [
+        "https://source.unsplash.com/random/360x265?bedroom",
+        "https://source.unsplash.com/random/360x265?bedroom",
+        "https://source.unsplash.com/random/360x265?bedroom"
+      ],
+      "price": 599,
+      "discount_price": 499,
+      "reviewsNumber": 95,
+      "ratings": 4.3,
+      "availability": true,
+      "brand": "Sleep Heaven",
+      "category": "Bedroom",
+      "details": "Memory foam, hypoallergenic",
+      "description": "Experience the ultimate comfort with our queen-size mattress. Its innovative design provides optimal support for a restful night's sleep.",
+      "sizes": ["M", "L"],
+      "colors": ["White"],
+      "inStock": 25
+    },
+    {
+      "name": "Modern Dresser with Mirror",
+      "image": [
+        "https://source.unsplash.com/random/360x265?bedroom",
+        "https://source.unsplash.com/random/360x265?bedroom",
+        "https://source.unsplash.com/random/360x265?bedroom"
+      ],
+      "price": 399,
+      "discount_price": null,
+      "reviewsNumber": 70,
+      "ratings": 4.0,
+      "availability": true,
+      "brand": "Urban Trends",
+      "category": "Bedroom",
+      "details": "Spacious drawers, sleek design",
+      "description": "Upgrade your bedroom decor with our modern dresser. Its ample storage space and contemporary style make it a perfect addition to any room.",
+      "sizes": ["S", "M", "L"],
+      "colors": ["Black", "White", "Brown"],
+      "inStock": 35
+    },
+    {
+      "name": "Luxurious Velvet Armchair",
+      "image": [
+        "https://source.unsplash.com/random/360x265?bedroom",
+        "https://source.unsplash.com/random/360x265?bedroom",
+        "https://source.unsplash.com/random/360x265?bedroom"
+      ],
+      "price": 299,
+      "discount_price": null,
+      "reviewsNumber": 60,
+      "ratings": 4.1,
+      "availability": true,
+      "brand": "Opulent Living",
+      "category": "Bedroom",
+      "details": "Velvet upholstery, solid wood frame",
+      "description": "Sink into comfort with our luxurious armchair. Its plush velvet upholstery and elegant design add a touch of sophistication to any space.",
+      "sizes": ["S", "M"],
+      "colors": ["Blue", "Gray", "Purple"],
+      "inStock": 20
+    },
+    {
+      "name": "Classic Wooden Wardrobe",
+      "image": [
+        "https://source.unsplash.com/random/360x265?bedroom",
+        "https://source.unsplash.com/random/360x265?bedroom",
+        "https://source.unsplash.com/random/360x265?bedroom"
+      ],
+      "price": 699,
+      "discount_price": 599,
+      "reviewsNumber": 80,
+      "ratings": 4.4,
+      "availability": true,
+      "brand": "Heritage Home",
+      "category": "Bedroom",
+      "details": "Solid wood construction, ample storage",
+      "description": "Organize your clothes in style with our classic wooden wardrobe. Its timeless design and sturdy construction make it a durable and elegant storage solution.",
+      "sizes": ["L", "XL"],
+      "colors": ["Brown"],
+      "inStock": 15
+    },
+    {
+      "name": "Soft Cotton Bed Sheets Set",
+      "image": [
+        "https://source.unsplash.com/random/360x265?bedroom",
+        "https://source.unsplash.com/random/360x265?bedroom",
+        "https://source.unsplash.com/random/360x265?bedroom"
+      ],
+      "price": 69,
+      "discount_price": 59,
+      "reviewsNumber": 100,
+      "ratings": 4.6,
+      "availability": true,
+      "brand": "Cloud Nine Linens",
+      "category": "Bedroom",
+      "details": "100% cotton, wrinkle-resistant",
+      "description": "Wrap yourself in luxury with our soft cotton bed sheets set. Experience unparalleled comfort and quality every night.",
+      "sizes": ["S", "M", "L"],
+      "colors": ["Blue", "White", "Gray"],
+      "inStock": 40
+    },
+    {
+      "name": "Modern Pendant Light",
+      "image": [
+        "https://source.unsplash.com/random/360x265?bedroom",
+        "https://source.unsplash.com/random/360x265?bedroom",
+        "https://source.unsplash.com/random/360x265?bedroom"
+      ],
+      "price": 129,
+      "discount_price": null,
+      "reviewsNumber": 45,
+      "ratings": 4.0,
+      "availability": true,
+      "brand": "Contemporary Illumination",
+      "category": "Bedroom",
+      "details": "Metal frame, adjustable height",
+      "description": "Illuminate your space with our modern pendant light. Its sleek design and adjustable height make it a versatile and stylish lighting solution.",
+      "sizes": ["One Size"],
+      "colors": ["Black", "Gold", "Silver"],
+      "inStock": 25
+    },
+    {
+      "name": "Plush Throw Blanket",
+      "image": [
+        "https://source.unsplash.com/random/360x265?bedroom",
+        "https://source.unsplash.com/random/360x265?bedroom",
+        "https://source.unsplash.com/random/360x265?bedroom"
+      ],
+      "price": 49,
+      "discount_price": null,
+      "reviewsNumber": 55,
+      "ratings": 4.3,
+      "availability": true,
+      "brand": "SnuggleSoft",
+      "category": "Bedroom",
+      "details": "Soft fleece material, machine washable",
+      "description": "Stay warm and cozy with our plush throw blanket. Its luxurious fleece material and stylish design make it a perfect addition to any living space.",
+      "sizes": ["One Size"],
+      "colors": ["Red", "Blue", "Green", "Gray"],
+      "inStock": 60
+    },
+    {
+      "name": "Vintage Bedside Lamp",
+      "image": [
+        "https://source.unsplash.com/random/360x265?bedroom",
+        "https://source.unsplash.com/random/360x265?bedroom",
+        "https://source.unsplash.com/random/360x265?bedroom"
+      ],
+      "price": 79,
+      "discount_price": null,
+      "reviewsNumber": 70,
+      "ratings": 4.1,
+      "availability": true,
+      "brand": "Retro Decor",
+      "category": "Bedroom",
+      "details": "Glass shade, brass base",
+      "description": "Add a touch of vintage charm to your bedroom with our bedside lamp. Its elegant design and warm glow create a cozy ambiance.",
+      "sizes": ["One Size"],
+      "colors": ["Gold", "Black"],
+      "inStock": 30
+    },
+    {
+      "name": "Faux Fur Rug",
+      "image": [
+        "https://source.unsplash.com/random/360x265?bedroom",
+        "https://source.unsplash.com/random/360x265?bedroom",
+        "https://source.unsplash.com/random/360x265?bedroom"
+      ],
+      "price": 89,
+      "discount_price": null,
+      "reviewsNumber": 40,
+      "ratings": 4.0,
+      "availability": true,
+      "brand": "Luxury Living",
+      "category": "Bedroom",
+      "details": "Soft faux fur material, non-slip backing",
+      "description": "Enhance your bedroom decor with our luxurious faux fur rug. Its plush texture and elegant design add warmth and sophistication to any room.",
+      "sizes": ["M", "L"],
+      "colors": ["White", "Brown", "Gray"],
+      "inStock": 20
+    },
+    {
+      "name": "Sleek Bedside Table",
+      "image": [
+        "https://source.unsplash.com/random/360x265?bedroom",
+        "https://source.unsplash.com/random/360x265?bedroom",
+        "https://source.unsplash.com/random/360x265?bedroom"
+      ],
+      "price": 119,
+      "discount_price": null,
+      "reviewsNumber": 60,
+      "ratings": 4.2,
+      "availability": true,
+      "brand": "Minimalist Designs",
+      "category": "Bedroom",
+      "details": "Metal frame, tempered glass top",
+      "description": "Complete your bedroom ensemble with our sleek bedside table. Its minimalist design and practical features make it a stylish and functional addition to any room.",
+      "sizes": ["One Size"],
+      "colors": ["Black", "Silver"],
+      "inStock": 35
+    },
+    {
+      "name": "Elegant Wall Mirror",
+      "image": [
+        "https://source.unsplash.com/random/360x265?bedroom",
+        "https://source.unsplash.com/random/360x265?bedroom",
+        "https://source.unsplash.com/random/360x265?bedroom"
+      ],
+      "price": 99,
+      "discount_price": null,
+      "reviewsNumber": 50,
+      "ratings": 4.3,
+      "availability": true,
+      "brand": "Reflections Decor",
+      "category": "Bedroom",
+      "details": "Frameless design, beveled edges",
+      "description": "Make a statement in your bedroom with our elegant wall mirror. Its timeless design and reflective surface add depth and style to any space.",
+      "sizes": ["One Size"],
+      "colors": ["Silver"],
+      "inStock": 25
+    },
+    {
+      "name": "Comfortable Reading Chair",
+      "image": [
+        "https://source.unsplash.com/random/360x265?bedroom",
+        "https://source.unsplash.com/random/360x265?bedroom",
+        "https://source.unsplash.com/random/360x265?bedroom"
+      ],
+      "price": 199,
+      "discount_price": null,
+      "reviewsNumber": 65,
+      "ratings": 4.4,
+      "availability": true,
+      "brand": "Cozy Corner",
+      "category": "Bedroom",
+      "details": "Upholstered seat, wooden frame",
+      "description": "Relax and unwind with our comfortable reading chair. Its ergonomic design and plush upholstery make it an ideal spot for reading or lounging.",
+      "sizes": ["S", "M"],
+      "colors": ["Blue", "Gray", "Beige"],
+      "inStock": 30
+    },
+    {
+      "name": "Modern Ceiling Fan",
+      "image": [
+        "https://source.unsplash.com/random/360x265?bedroom",
+        "https://source.unsplash.com/random/360x265?bedroom",
+        "https://source.unsplash.com/random/360x265?bedroom"
+      ],
+      "price": 179,
+      "discount_price": null,
+      "reviewsNumber": 45,
+      "ratings": 4.1,
+      "availability": true,
+      "brand": "AirFlow Solutions",
+      "category": "Bedroom",
+      "details": "Three-speed settings, reversible blades",
+      "description": "Stay cool and comfortable with our modern ceiling fan. Its sleek design and efficient performance make it a perfect addition to any room.",
+      "sizes": ["One Size"],
+      "colors": ["White", "Black", "Silver"],
+      "inStock": 20
+    },
+    {
+      "name": "Decorative Throw Pillows Set",
+      "image": [
+        "https://source.unsplash.com/random/360x265?bedroom",
+        "https://source.unsplash.com/random/360x265?bedroom",
+        "https://source.unsplash.com/random/360x265?bedroom"
+      ],
+      "price": 39,
+      "discount_price": null,
+      "reviewsNumber": 55,
+      "ratings": 4.2,
+      "availability": true,
+      "brand": "Artistic Accents",
+      "category": "Bedroom",
+      "details": "Set of two, removable covers",
+      "description": "Enhance your bedroom decor with our decorative throw pillows set. Its vibrant colors and stylish patterns add personality and charm to any space.",
+      "sizes": ["One Size"],
+      "colors": ["Red", "Blue", "Yellow", "Green"],
+      "inStock": 50
+    },
+    {
+      "name": "Rustic Bed Frame",
+      "image": [
+        "https://source.unsplash.com/random/360x265?bedroom",
+        "https://source.unsplash.com/random/360x265?bedroom",
+        "https://source.unsplash.com/random/360x265?bedroom"
+      ],
+      "price": 499,
+      "discount_price": null,
+      "reviewsNumber": 70,
+      "ratings": 4.3,
+      "availability": true,
+      "brand": "Country Comfort",
+      "category": "Bedroom",
+      "details": "Reclaimed wood, distressed finish",
+      "description": "Add a touch of rustic charm to your bedroom with our bed frame. Its durable construction and weathered finish create a cozy and inviting atmosphere.",
+      "sizes": ["Queen", "King"],
+      "colors": ["Brown"],
+      "inStock": 20
+    },
+    {
+      "name": "Chic Bedside Clock",
+      "image": [
+        "https://source.unsplash.com/random/360x265?bedroom",
+        "https://source.unsplash.com/random/360x265?bedroom",
+        "https://source.unsplash.com/random/360x265?bedroom"
+      ],
+      "price": 29,
+      "discount_price": null,
+      "reviewsNumber": 40,
+      "ratings": 4.0,
+      "availability": true,
+      "brand": "Trendy Timepieces",
+      "category": "Bedroom",
+      "details": "Analog display, silent movement",
+      "description": "Stay punctual with our chic bedside clock. Its sleek design and silent movement ensure a peaceful night's sleep.",
+      "sizes": ["One Size"],
+      "colors": ["Black", "White", "Gold"],
+      "inStock": 30
+    },
+    {
+      "name": "Modern Bedside Table Lamp",
+      "image": [
+        "https://source.unsplash.com/random/360x265?bedroom",
+        "https://source.unsplash.com/random/360x265?bedroom",
+        "https://source.unsplash.com/random/360x265?bedroom"
+      ],
+      "price": 59,
+      "discount_price": null,
+      "reviewsNumber": 35,
+      "ratings": 4.0,
+      "availability": true,
+      "brand": "Urban Glow",
+      "category": "Bedroom",
+      "details": "Glass base, fabric shade",
+      "description": "Brighten up your bedside with our modern table lamp. Its contemporary design and soft glow create a cozy ambiance in any room.",
+      "sizes": ["One Size"],
+      "colors": ["White", "Black", "Silver"],
+      "inStock": 25
+    },
+    {
+      "name": "Stylish Area Rug",
+      "image": [
+        "https://source.unsplash.com/random/360x265?bedroom",
+        "https://source.unsplash.com/random/360x265?bedroom",
+        "https://source.unsplash.com/random/360x265?bedroom"
+      ],
+      "price": 109,
+      "discount_price": null,
+      "reviewsNumber": 50,
+      "ratings": 4.1,
+      "availability": true,
+      "brand": "Modern Trends",
+      "category": "Bedroom",
+      "details": "Abstract design, durable construction",
+      "description": "Upgrade your floor space with our stylish area rug. Its vibrant colors and contemporary pattern add a pop of personality to any room.",
+      "sizes": ["M", "L"],
+      "colors": ["Blue", "Gray", "Brown"],
+      "inStock": 20
+    }
+  ]
+}

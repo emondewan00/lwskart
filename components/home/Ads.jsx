@@ -1,9 +1,14 @@
+import offer from "@/public/images/offer.jpg";
+import Image from "next/image";
+import Link from "next/link";
 const Ads = () => {
-    return (  <div class="container pb-16">
-    <a href="#">
-        <img src="assets/images/offer.jpg" alt="ads" class="w-full"/>
-    </a>
-</div> );
-}
- 
+  return (
+    <div class="container pb-16">
+      <Link href="#">
+        <Image src={offer} alt="ads" class="w-full" />
+      </Link>
+    </div>
+  );
+};
+
 export default Ads;

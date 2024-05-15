@@ -1,12 +1,10 @@
+import Image from "next/image";
+import productSix from "@/public/images/products/product6.jpg";
 const WishlistCard = () => {
   return (
     <div class="flex items-center justify-between border gap-6 p-4 border-gray-200 rounded">
       <div class="w-28">
-        <img
-          src="../assets/images/products/product6.jpg"
-          alt="product 6"
-          class="w-full"
-        />
+        <Image src={productSix} alt="product 6" class="w-full" />
       </div>
       <div class="w-1/3">
         <h2 class="text-gray-800 text-xl font-medium uppercase">

@@ -1,8 +1,10 @@
+import Link from "next/link";
+
 const Banner = () => {
   return (
     <div
       class="bg-cover bg-no-repeat bg-center py-36"
-      style={{ backgroundImage: " url('assets/images/banner-bg.jpg')" }}
+      style={{ backgroundImage: " url('/images/banner-bg.jpg')" }}
     >
       <div class="container">
         <h1 class="text-6xl text-gray-800 font-medium mb-4 capitalize">
@@ -15,13 +17,13 @@ const Banner = () => {
           odio
         </p>
         <div class="mt-12">
-          <a
-            href="#"
+          <Link
+            href="/"
             class="bg-primary border border-primary text-white px-8 py-3 font-medium 
                 rounded-md hover:bg-transparent hover:text-primary"
           >
             Shop Now
-          </a>
+          </Link>
         </div>
       </div>
     </div>

@@ -1,9 +1,14 @@
+import Image from "next/image";
+import logo from "@/public/images/logo.svg";
+import solutionsLinks from "@/data/solutionLinks";
+import supportLinks from "@/data/supportLinks";
+import Link from "next/link";
 const Footer = () => {
   return (
     <footer class="bg-white pt-16 pb-12 border-t border-gray-100">
       <div class="container grid grid-cols-1 ">
         <div class="col-span-1 space-y-4">
-          <img src="assets/images/logo.svg" alt="logo" class="w-30" />
+          <Image src={logo} alt="logo" class="w-30" />
           <div class="mr-2">
             <p class="text-gray-500">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia,
@@ -25,7 +30,6 @@ const Footer = () => {
             </a>
           </div>
         </div>
-
         <div class="col-span-2 grid grid-cols-2 gap-4">
           <div class="grid grid-cols-2 gap-4 md:gap-8">
             <div>
@@ -33,30 +37,15 @@ const Footer = () => {
                 Solutions
               </h3>
               <div class="mt-4 space-y-4">
-                <a
-                  href="#"
-                  class="text-base text-gray-500 hover:text-gray-900 block"
-                >
-                  Marketing
-                </a>
-                <a
-                  href="#"
-                  class="text-base text-gray-500 hover:text-gray-900 block"
-                >
-                  Analitycs
-                </a>
-                <a
-                  href="#"
-                  class="text-base text-gray-500 hover:text-gray-900 block"
-                >
-                  Commerce
-                </a>
-                <a
-                  href="#"
-                  class="text-base text-gray-500 hover:text-gray-900 block"
-                >
-                  Insights
-                </a>
+                {solutionsLinks.map((link) => (
+                  <Link
+                    key={link.id}
+                    href={link.href}
+                    class="text-base text-gray-500 hover:text-gray-900 block"
+                  >
+                    {link.title}
+                  </Link>
+                ))}
               </div>
             </div>
 
@@ -65,25 +54,15 @@ const Footer = () => {
                 Support
               </h3>
               <div class="mt-4 space-y-4">
-                <a
-                  href="#"
-                  class="text-base text-gray-500 hover:text-gray-900 block"
-                >
-                  Pricing
-                </a>
-                {/* <!-- <a href="#" class="text-base text-gray-500 hover:text-gray-900 block">Documentation</a> --> */}
-                <a
-                  href="#"
-                  class="text-base text-gray-500 hover:text-gray-900 block"
-                >
-                  Guides
-                </a>
-                <a
-                  href="#"
-                  class="text-base text-gray-500 hover:text-gray-900 block"
-                >
-                  API Status
-                </a>
+                {supportLinks.map((link) => (
+                  <Link
+                    key={link.id}
+                    href={link.href}
+                    class="text-base text-gray-500 hover:text-gray-900 block"
+                  >
+                    {link.title}
+                  </Link>
+                ))}
               </div>
             </div>
           </div>
@@ -93,30 +72,15 @@ const Footer = () => {
                 Solutions
               </h3>
               <div class="mt-4 space-y-4">
-                <a
-                  href="#"
-                  class="text-base text-gray-500 hover:text-gray-900 block"
-                >
-                  Marketing
-                </a>
-                <a
-                  href="#"
-                  class="text-base text-gray-500 hover:text-gray-900 block"
-                >
-                  Analitycs
-                </a>
-                <a
-                  href="#"
-                  class="text-base text-gray-500 hover:text-gray-900 block"
-                >
-                  Commerce
-                </a>
-                <a
-                  href="#"
-                  class="text-base text-gray-500 hover:text-gray-900 block"
-                >
-                  Insights
-                </a>
+                {solutionsLinks.map((link) => (
+                  <Link
+                    key={link.id}
+                    href={link.href}
+                    class="text-base text-gray-500 hover:text-gray-900 block"
+                  >
+                    {link.title}
+                  </Link>
+                ))}
               </div>
             </div>
 
@@ -125,25 +89,15 @@ const Footer = () => {
                 Support
               </h3>
               <div class="mt-4 space-y-4">
-                <a
-                  href="#"
-                  class="text-base text-gray-500 hover:text-gray-900 block"
-                >
-                  Pricing
-                </a>
-                {/* <!-- <a href="#" class="text-base text-gray-500 hover:text-gray-900 block">Documentation</a> --> */}
-                <a
-                  href="#"
-                  class="text-base text-gray-500 hover:text-gray-900 block"
-                >
-                  Guides
-                </a>
-                <a
-                  href="#"
-                  class="text-base text-gray-500 hover:text-gray-900 block"
-                >
-                  API Status
-                </a>
+                {supportLinks.map((link) => (
+                  <Link
+                    key={link.id}
+                    href={link.href}
+                    class="text-base text-gray-500 hover:text-gray-900 block"
+                  >
+                    {link.title}
+                  </Link>
+                ))}
               </div>
             </div>
           </div>
