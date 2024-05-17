@@ -1,93 +1,103 @@
-import productOne from "@/public/images/products/product1.jpg";
-import productTwo from "@/public/images/products/product2.jpg";
+import connectMongo from "@/lib/connectDb";
+import productModel from "@/schema/productModel";
 import Image from "next/image";
-const ProductDetail = () => {
+import { Types } from "mongoose";
+import { notFound } from "next/navigation";
+import { FaFacebook, FaInstagram, FaStar, FaTwitter } from "react-icons/fa";
+const ProductDetail = async ({ id }) => {
+  await connectMongo();
+  const product = await productModel.findOne({ _id: new Types.ObjectId(id) });
+  const {
+    image,
+    name,
+    price,
+    discount_price,
+    description,
+    category,
+    brand,
+    colors,
+    sizes,
+    reviewsNumber,
+    ratings,
+    soldCounts,
+    availability,
+    sku,
+  } = product;
+  if (!product) {
+    notFound();
+  }
+  const a = Array(Math.round(ratings)).fill(0);
   return (
     <div className="container grid grid-cols-2 gap-6">
       <div>
-        <Image src={productOne} alt="product" className="w-full" />
+        <Image
+          width={740}
+          height={550}
+          src={`${image[0] + "?pdID=" + id} `}
+          alt={product?.name}
+          className="w-full"
+          quality={100}
+        />
         <div className="grid grid-cols-5 gap-4 mt-4">
-          <Image
-            src={productTwo}
-            alt="product2"
-            className="w-full cursor-pointer border border-primary"
-          />
-          <Image
-            src={productTwo}
-            alt="product2"
-            className="w-full cursor-pointer border"
-          />
-          <Image
-            src={productTwo}
-            alt="product2"
-            className="w-full cursor-pointer border"
-          />
-          <Image
-            src={productTwo}
-            alt="product2"
-            className="w-full cursor-pointer border"
-          />
-          <Image
-            src={productTwo}
-            alt="product2"
-            className="w-full cursor-pointer border"
-          />
+          {image.map((img, i) => (
+            <Image
+              key={i}
+              width={133}
+              height={100}
+              src={i === 0 ? img + "?pdID=" + id : img + "?pdID=" + id + i}
+              alt={name}
+              className={`w-full cursor-pointer border ${
+                i === 0 && "border-primary"
+              }`}
+            />
+          ))}
         </div>
       </div>
 
       <div>
-        <h2 className="text-3xl font-medium uppercase mb-2">
-          Italian L Shape Sofa
-        </h2>
+        <h2 className="text-3xl font-medium uppercase mb-2">{name}</h2>
         <div className="flex items-center mb-4">
           <div className="flex gap-1 text-sm text-yellow-400">
-            <span>
-              <i className="fa-solid fa-star"></i>
-            </span>
-            <span>
-              <i className="fa-solid fa-star"></i>
-            </span>
-            <span>
-              <i className="fa-solid fa-star"></i>
-            </span>
-            <span>
-              <i className="fa-solid fa-star"></i>
-            </span>
-            <span>
-              <i className="fa-solid fa-star"></i>
-            </span>
+            {a.map((_, i) => (
+              <span key={i}>
+                <FaStar />
+              </span>
+            ))}
           </div>
-          <div className="text-xs text-gray-500 ml-3">(150 Reviews)</div>
+          <div className="text-xs text-gray-500 ml-3">
+            ({reviewsNumber} Reviews)
+          </div>
         </div>
         <div className="space-y-2">
           <p className="text-gray-800 font-semibold space-x-2">
             <span>Availability: </span>
-            <span className="text-green-600">In Stock</span>
+            {availability ? (
+              <span className="text-green-600">In Stock</span>
+            ) : (
+              <span className="text-red-600">Out of Stock</span>
+            )}
           </p>
           <p className="space-x-2">
             <span className="text-gray-800 font-semibold">Brand: </span>
-            <span className="text-gray-600">Apex</span>
+            <span className="text-gray-600">{brand}</span>
           </p>
           <p className="space-x-2">
             <span className="text-gray-800 font-semibold">Category: </span>
-            <span className="text-gray-600">Sofa</span>
+            <span className="text-gray-600 capitalize">{category}</span>
           </p>
           <p className="space-x-2">
             <span className="text-gray-800 font-semibold">SKU: </span>
-            <span className="text-gray-600">BE45VGRT</span>
+            <span className="text-gray-600 uppercase">{id.slice(10, 16)}</span>
           </p>
         </div>
         <div className="flex items-baseline mb-1 space-x-2 font-roboto mt-4">
-          <p className="text-xl text-primary font-semibold">$45.00</p>
-          <p className="text-base text-gray-400 line-through">$55.00</p>
+          <p className="text-xl text-primary font-semibold">
+            ${discount_price}
+          </p>
+          <p className="text-base text-gray-400 line-through">${price}</p>
         </div>
 
-        <p className="mt-4 text-gray-600">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos eius eum
-          reprehenderit dolore vel mollitia optio consequatur hic asperiores
-          inventore suscipit, velit consequuntur, voluptate doloremque iure
-          necessitatibus adipisci magnam porro.
-        </p>
+        <p className="mt-4 text-gray-600">{description}</p>
 
         <div className="mt-4">
           <h3 className="text-sm text-gray-800 uppercase mb-1">Quantity</h3>
@@ -96,7 +106,7 @@ const ProductDetail = () => {
               -
             </div>
             <div className="h-8 w-8 text-base flex items-center justify-center">
-              4
+              1
             </div>
             <div className="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none">
               +
@@ -124,19 +134,19 @@ const ProductDetail = () => {
             href="#"
             className="text-gray-400 hover:text-gray-500 h-8 w-8 rounded-full border border-gray-300 flex items-center justify-center"
           >
-            <i className="fa-brands fa-facebook-f"></i>
+            <FaFacebook />
           </a>
           <a
             href="#"
             className="text-gray-400 hover:text-gray-500 h-8 w-8 rounded-full border border-gray-300 flex items-center justify-center"
           >
-            <i className="fa-brands fa-twitter"></i>
+            <FaTwitter />
           </a>
           <a
             href="#"
             className="text-gray-400 hover:text-gray-500 h-8 w-8 rounded-full border border-gray-300 flex items-center justify-center"
           >
-            <i className="fa-brands fa-instagram"></i>
+            <FaInstagram />
           </a>
         </div>
       </div>

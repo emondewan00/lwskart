@@ -3,13 +3,13 @@ import ProductDetail from "@/components/productDetails/ProductDetail";
 import RelatedProduct from "@/components/productDetails/RelatedProduct";
 import BreadCrumb from "@/components/shared/BreadCrumb";
 
-const ProductDetailsPage = () => {
+const ProductDetailsPage = ({ params : { id }}) => {
   return (
     <>
       <BreadCrumb />
-      <ProductDetail />
-      <Description />
-      <RelatedProduct />
+      <ProductDetail id={id} />
+      <Description id={id} />
+      {/* <RelatedProduct /> */}
     </>
   );
 };

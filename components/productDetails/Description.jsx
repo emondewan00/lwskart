@@ -1,7 +1,7 @@
 const Description = () => {
   return (
-    <div className="container pb-16">
-      <h3 className="border-b border-gray-200 font-roboto text-gray-800 pb-3 font-medium">
+    <div className="container pb-16 mt-6">
+      <h3 className="text-xl font-bold border-b border-gray-200 font-roboto text-gray-800 pb-3 ">
         Product details
       </h3>
       <div className="w-3/5 pt-6">

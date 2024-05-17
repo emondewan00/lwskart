@@ -19,14 +19,14 @@ const ProductCard = ({ product, id }) => {
           justify-center gap-2 opacity-0 group-hover:opacity-100 transition"
         >
           <Link
-            href={`/product/${1}`}
+            href={`/product/${id}`}
             className="text-white text-lg w-9 h-9 rounded-full bg-primary flex items-center justify-center hover:bg-gray-800 transition"
             title="view product"
           >
             <FaSearch />
           </Link>
           <Link
-            href="#"
+            href={`/product/${id}`}
             className="text-white text-lg w-9 h-9 rounded-full bg-primary flex items-center justify-center hover:bg-gray-800 transition"
             title="add to wishlist"
           >
@@ -35,14 +35,16 @@ const ProductCard = ({ product, id }) => {
         </div>
       </div>
       <div className="pt-4 pb-3 px-4">
-        <Link href={`/product/${1}`}>
+        <Link href={`/product/${id}`}>
           <h4 className="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">
             {name}
           </h4>
         </Link>
         <div className="flex items-baseline mb-1 space-x-2">
           <p className="text-xl text-primary font-semibold">${price}</p>
-          <p className="text-sm text-gray-400 line-through">${discount_price}</p>
+          <p className="text-sm text-gray-400 line-through">
+            ${discount_price}
+          </p>
         </div>
         <div className="flex items-center">
           <div className="flex gap-1 text-sm text-yellow-400">
