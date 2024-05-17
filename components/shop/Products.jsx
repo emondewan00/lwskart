@@ -1,12 +1,21 @@
 import ProductCard from "../shared/ProductCard";
-import data from "@/data/products.json";
-
-const Products = () => {
+import connectMongo from "@/lib/connectDb";
+import productModel from "@/schema/productModel";
+const Products = async ({ searchParams }) => {
+  await connectMongo();
+  let data = [];
+  if (searchParams.category) {
+    data = await productModel.find({
+      category: { $in: searchParams.category.split(",") },
+    });
+  } else {
+    data = await productModel.find({});
+  }
   return (
-    <div class="col-span-3">
-      <div class="grid md:grid-cols-3 grid-cols-2 gap-6">
-        {data.products.map((product, idx) => (
-          <ProductCard key={idx} product={product} />
+    <div className="col-span-3">
+      <div className="grid md:grid-cols-3 grid-cols-2 gap-6">
+        {data?.map((product, idx) => (
+          <ProductCard key={idx} product={product} id={idx} />
         ))}
       </div>
     </div>

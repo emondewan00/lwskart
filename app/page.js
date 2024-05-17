@@ -4,7 +4,6 @@ import Categories from "@/components/home/Categories";
 import Features from "@/components/home/Features";
 import NewArrival from "@/components/home/NewArrival";
 import Product from "@/components/home/Product";
-import Image from "next/image";
 
 export default function Home() {
   return (

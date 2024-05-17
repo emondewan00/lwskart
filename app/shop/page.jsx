@@ -4,15 +4,15 @@ import DrawerToggle from "@/components/shop/DrawerToggle";
 import Products from "@/components/shop/Products";
 import Sidebar from "@/components/shop/Sidebar";
 
-const Shop = () => {
+const Shop = ({ searchParams }) => {
   return (
     <>
       <BreadCrumb />
-      <div class="container grid md:grid-cols-4 grid-cols-2 gap-6 pt-4 pb-16 items-start">
+      <div className="container grid md:grid-cols-4 grid-cols-2 gap-6 pt-4 pb-16 items-start">
         <DrawerToggle />
         <Drawer />
         <Sidebar />
-        <Products />
+        <Products searchParams={searchParams} />
       </div>
     </>
   );

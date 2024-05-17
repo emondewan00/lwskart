@@ -5,8 +5,8 @@ const WishlistPage = () => {
   return (
     <>
       <BreadCrumb />
-      <div class="container gap-6 pt-4 pb-16">
-        <div class="mx-auto space-y-4 max-w-6xl">
+      <div className="container gap-6 pt-4 pb-16">
+        <div className="mx-auto space-y-4 max-w-6xl">
           <WishlistCard />
           <WishlistCard />
           <WishlistCard />

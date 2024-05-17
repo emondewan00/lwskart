@@ -3,9 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 const Ads = () => {
   return (
-    <div class="container pb-16">
+    <div className="container pb-16">
       <Link href="#">
-        <Image src={offer} alt="ads" class="w-full" />
+        <Image src={offer} alt="ads" className="w-full" />
       </Link>
     </div>
   );

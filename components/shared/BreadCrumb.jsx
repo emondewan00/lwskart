@@ -1,13 +1,15 @@
-const BreadCrumb = () => {
+import Link from "next/link";
+import { FaChevronRight, FaHouseChimney } from "react-icons/fa6";
+const BreadCrumb = ({ name }) => {
   return (
-    <div class="container py-4 flex items-center gap-3">
-      <a href="../index.html" class="text-primary text-base">
-        <i class="fa-solid fa-house"></i>
-      </a>
-      <span class="text-sm text-gray-400">
-        <i class="fa-solid fa-chevron-right"></i>
+    <div className="container py-4 flex items-center gap-3">
+      <Link href="/" className="text-primary text-base">
+        <FaHouseChimney />
+      </Link>
+      <span className="text-sm text-gray-400">
+        <FaChevronRight />
       </span>
-      <p class="text-gray-600 font-medium">Account</p>
+      <p className="text-gray-600 font-medium">Account</p>
     </div>
   );
 };
