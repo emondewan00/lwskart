@@ -9,7 +9,7 @@ const ProductDetailsPage = ({ params : { id }}) => {
       <BreadCrumb />
       <ProductDetail id={id} />
       <Description id={id} />
-      {/* <RelatedProduct /> */}
+      <RelatedProduct id={id} />
     </>
   );
 };
