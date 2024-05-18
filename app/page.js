@@ -5,7 +5,7 @@ import Features from "@/components/home/Features";
 import NewArrival from "@/components/home/NewArrival";
 import Product from "@/components/home/Product";
 
-export default function Home() {
+export default  function Home() {
   return (
     <>
       <Banner />

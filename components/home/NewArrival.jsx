@@ -4,7 +4,7 @@ import productModel from "@/schema/productModel";
 
 const NewArrival = async () => {
   await connectMongo();
-  const products = await productModel.find({}).limit(4);
+  const products = await productModel.find({}).sort({ createdAt: -1 }).limit(4);
 
   return (
     <div className="container pb-16">

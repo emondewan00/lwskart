@@ -4,7 +4,10 @@ import productModel from "@/schema/productModel";
 
 const Product = async () => {
   await connectMongo();
-  const products = await productModel.find({}).limit(8);
+  const products = await productModel
+    .find({})
+    .sort({ soldCounts: -1 })
+    .limit(8);
   return (
     <div className="container pb-16">
       <h2 className="text-2xl font-medium text-gray-800 uppercase mb-6">

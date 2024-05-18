@@ -21,7 +21,7 @@ const productSchema = new Schema(
   { timestamps: true }
 );
 
-export default mongoose.models.Products || model("Products", productSchema);
+export default mongoose.models.Product || model("Product", productSchema);
 
 const sofaSizes = [
   "2-seater",
