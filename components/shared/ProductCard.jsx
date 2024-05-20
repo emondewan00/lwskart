@@ -11,7 +11,7 @@ const ProductCard = async ({ product }) => {
   const session = await auth();
 
   return (
-    <div className="bg-white shadow rounded overflow-hidden group">
+    <div className="bg-white shadow rounded overflow-hidden group flex flex-col">
       <div className="relative">
         <Image
           width={365}
@@ -34,18 +34,20 @@ const ProductCard = async ({ product }) => {
           <AddToWishList session={session} pd={_id.toString()} />
         </div>
       </div>
-      <div className="pt-4 pb-3 px-4">
+      <div className="pt-4 pb-3 px-4 ">
         <Link href={`/product/${_id}`}>
           <h4 className="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">
             {name}
           </h4>
         </Link>
+
         <div className="flex items-baseline mb-1 space-x-2">
           <p className="text-xl text-primary font-semibold">${price}</p>
           <p className="text-sm text-gray-400 line-through">
             ${discount_price}
           </p>
         </div>
+
         <div className="flex items-center">
           <div className="flex gap-1 text-sm text-yellow-400">
             {rating.map((_, idx) => (

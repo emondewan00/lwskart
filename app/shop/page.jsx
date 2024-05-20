@@ -4,7 +4,7 @@ import DrawerToggle from "@/components/shop/DrawerToggle";
 import Products from "@/components/shop/Products";
 import Sidebar from "@/components/shop/Sidebar";
 
-const Shop = ({ searchParams }) => {
+const ShopPage = ({ searchParams }) => {
   return (
     <>
       <BreadCrumb />
@@ -18,4 +18,4 @@ const Shop = ({ searchParams }) => {
   );
 };
 
-export default Shop;
+export default ShopPage;

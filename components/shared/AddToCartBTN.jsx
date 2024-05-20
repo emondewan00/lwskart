@@ -14,11 +14,11 @@ const AddToCartBTN = ({ session, pd }) => {
     await addToCart(cart);
   };
   return (
-    <form onSubmit={cartHandler}>
+    <form onSubmit={cartHandler} className="mt-auto" >
       <button
         disabled={!session?.user}
         type="submit"
-        className="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition cursor-pointer"
+        className="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition cursor-pointer "
       >
         Add to cart
       </button>

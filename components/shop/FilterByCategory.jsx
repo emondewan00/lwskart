@@ -17,7 +17,8 @@ const FilterByCategory = ({ children }) => {
       const queryInCategory = decodedCategory.split(",");
       setQuery(queryInCategory);
     }
-  }, []);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[]);
 
   const handleChange = (e) => {
     if (e.target.checked) {

@@ -1,7 +1,7 @@
 import ProductCard from "../shared/ProductCard";
 import connectMongo from "@/lib/connectDb";
 import productModel from "@/schema/productModel";
-const Products = async ({ searchParams }) => {
+const Products = async ({ searchParams={} }) => {
   await connectMongo();
   let data = [];
   let query = {};
