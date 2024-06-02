@@ -10,7 +10,7 @@ const addToCart = async (data) => {
     item: { product_id, quantity },
   } = data;
   await connectMongo();
-  // Find the user's cart or create one if it doesn't exist
+  // Find the user's cart
   let cart = await cartModel.findOne({ user_id: new Types.ObjectId(user_id) });
 
   //if cart not found create new cart
@@ -24,8 +24,8 @@ const addToCart = async (data) => {
     return newCart;
   }
   // Check if the product already exists in the cart
-  const existingItem = cart.items.find(
-    (item) => item.product_id.toString() === product_id
+  const existingItem = cart.items.find((item) =>
+    item.product_id.equals(product_id)
   );
   if (existingItem) {
     // If the product already exists, update its quantity
