@@ -7,7 +7,12 @@ const WishlistPage = async () => {
   const session = await auth();
   if (!session?.user) return redirect("/login");
   const wishlist = await fetch(
-    `http://localhost:3000/api/wishlist/${session?.user?.id}`
+    `http://localhost:3000/api/wishlist/${session?.user?.id}`,
+    {
+      next: {
+        tags: ["wishlist"],
+      },
+    }
   );
   const data = await wishlist.json();
   return (

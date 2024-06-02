@@ -1,11 +1,10 @@
 import Image from "next/image";
-import { FaTrash } from "react-icons/fa";
 import AddToCartBTN from "../shared/AddToCartBTN";
 import { auth } from "@/auth";
+import DeleteWishList from "./DeleteToWishList";
 const WishlistCard = async ({ data: { product_id } }) => {
-  const { name, image, price, discount_price, ratings, availability } =
-    product_id;
-  const session = await auth();
+  const { name, image, discount_price, availability, _id } = product_id;
+  const { user } = await auth();
 
   return (
     <div className="grid grid-cols-4 p-4 border-gray-200 rounded border">
@@ -38,15 +37,8 @@ const WishlistCard = async ({ data: { product_id } }) => {
         </div>
       </div>
       <div className="flex items-center gap-8">
-        <AddToCartBTN
-          session={session}
-          pd={product_id}
-          style={"px-4 rounded "}
-        />
-
-        <div className="text-gray-600 cursor-pointer bg-rose-100 rounded p-2 hover:text-primary">
-          <FaTrash />
-        </div>
+        <AddToCartBTN user={user} pd={product_id} style={"px-4 rounded "} />
+        <DeleteWishList user_id={user?.id} product_id={_id} />
       </div>
     </div>
   );
