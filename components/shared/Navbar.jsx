@@ -3,8 +3,11 @@ import Image from "next/image";
 import { FaBars } from "react-icons/fa";
 import navLinks from "@/data/navLinks";
 import categoryLinks from "@/data/categoryLinks";
+import { auth } from "@/auth";
+import { logout } from "@/actions/user";
 
-const Navbar = () => {
+const Navbar = async () => {
+  const session = await auth();
   return (
     <nav className="bg-gray-800">
       <div className="container flex">
@@ -12,7 +15,9 @@ const Navbar = () => {
           <span className="text-white text-2xl">
             <FaBars />
           </span>
-          <span className="capitalize ml-2 text-white hidden">All Categories</span>
+          <span className="capitalize ml-2 text-white hidden">
+            All Categories
+          </span>
 
           <div
             className="absolute left-0 top-full bg-white shadow-md py-3 divide-y divide-gray-300 divide-dashed opacity-0 group-hover:opacity-100 transition duration-300 invisible group-hover:visible w-[600px]"
@@ -31,7 +36,9 @@ const Navbar = () => {
                   alt="sofa"
                   className="w-5 h-5 object-contain"
                 />
-                <span className="ml-6 text-gray-600 text-sm">{item.category}</span>
+                <span className="ml-6 text-gray-600 text-sm">
+                  {item.category}
+                </span>
               </Link>
             ))}
           </div>
@@ -49,9 +56,24 @@ const Navbar = () => {
               </Link>
             ))}
           </div>
-          <Link href="/login" className="text-gray-200 hover:text-white transition">
-            Login
-          </Link>
+
+          {session ? (
+            <form action={logout}>
+              <button
+                type="submit"
+                className="text-gray-200 hover:text-white transition"
+              >
+                Log Out
+              </button>
+            </form>
+          ) : (
+            <Link
+              href="/login"
+              className="text-gray-200 hover:text-white transition"
+            >
+              Login
+            </Link>
+          )}
         </div>
       </div>
     </nav>

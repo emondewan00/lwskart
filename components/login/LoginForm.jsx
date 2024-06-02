@@ -1,8 +1,9 @@
 "use client";
-import { login, loginWithFacebook } from "@/actions/user";
+import { login } from "@/actions/user";
 import Link from "next/link";
 import { useFormState } from "react-dom";
 import FacebookLogButton from "../shared/FacebookLogButton";
+import GoogleLogButton from "../shared/GoogleLogButton";
 const LoginForm = () => {
   const [state, dispatch] = useFormState(login, null);
   console.log(state, "state");
@@ -76,12 +77,7 @@ const LoginForm = () => {
         </div>
         <div className="mt-4 flex gap-4">
           <FacebookLogButton />
-          <a
-            href="#"
-            className="w-1/2 py-2 text-center text-white bg-red-600 rounded uppercase font-roboto font-medium text-sm hover:bg-red-500"
-          >
-            google
-          </a>
+          <GoogleLogButton />
         </div>
 
         <p className="mt-4 text-center text-gray-600">

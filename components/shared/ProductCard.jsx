@@ -31,7 +31,7 @@ const ProductCard = async ({ product }) => {
           >
             <FaSearch />
           </Link>
-          <AddToWishList session={session} pd={_id.toString()} />
+          <AddToWishList session={session} product_id={_id?.toString()} />
         </div>
       </div>
       <div className="pt-4 pb-3 px-4 ">
@@ -59,7 +59,11 @@ const ProductCard = async ({ product }) => {
           <div className="text-xs text-gray-500 ml-3">(150)</div>
         </div>
       </div>
-      <AddToCartBTN session={session} pd={_id.toString()} />
+      <AddToCartBTN
+        session={session}
+        pd={_id?.toString()}
+        formStyle={"mt-auto"}
+      />
     </div>
   );
 };

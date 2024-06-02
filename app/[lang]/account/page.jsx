@@ -1,8 +1,7 @@
+import { auth } from "@/auth";
 import AccountCard from "@/components/account/AccountCard";
-import BillingAddress from "@/components/account/BillingAddress";
-import PersonalProfile from "@/components/account/PersonalProfile";
-import ShippingAddress from "@/components/account/ShippingAddress";
 import BreadCrumb from "@/components/shared/BreadCrumb";
+import { redirect } from "next/navigation";
 
 const accountData = [
   {
@@ -30,7 +29,11 @@ const accountData = [
   },
 ];
 
-const Account = () => {
+const Account = async () => {
+  const session = await auth();
+  if (!session?.user) {
+    return redirect("/login");
+  }
   return (
     <>
       <BreadCrumb />

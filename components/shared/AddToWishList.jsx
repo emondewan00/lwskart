@@ -1,13 +1,15 @@
+"use client";
 import addToWishList from "@/actions/addWishList";
 import { FaRegHeart } from "react-icons/fa";
 
-const AddToWishList = ({ session, pd }) => {
-  const wishSubmit = async () => {
-    "use server";
-    addToWishList({ ...session?.user, pd });
+const AddToWishList = ({ session, product_id }) => {
+  const wishSubmit = async (e) => {
+    e.preventDefault();
+    if (!session?.user) return;
+    addToWishList({ user_id: session?.user?.id, product_id });
   };
   return (
-    <form action={wishSubmit}>
+    <form onSubmit={wishSubmit}>
       <button
         disabled={!session?.user}
         type="submit"

@@ -24,7 +24,7 @@ const FilterByCategory = ({ children }) => {
     if (e.target.checked) {
       setQuery([...query, e.target.name]);
       params.delete("category");
-      params.append("category", [...query, e.target.name]);
+      params.append("category", [...query, e.target.name].join(","));
     } else {
       const remove = query.filter((item) => item !== e.target.name);
       setQuery(remove);
@@ -32,7 +32,7 @@ const FilterByCategory = ({ children }) => {
       if (remove.length > 0) {
         params.append("category", remove);
       }
-    }
+    } 
     router.push(`${pathName}?${params.toString()}`);
   };
 

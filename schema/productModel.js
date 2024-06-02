@@ -1,4 +1,4 @@
-import mongoose, { Schema, model } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 const productSchema = new Schema(
   {
@@ -21,7 +21,8 @@ const productSchema = new Schema(
   { timestamps: true }
 );
 
-export default mongoose.models.Product || model("Product", productSchema);
+export default mongoose.models.Product ||
+  mongoose.model("Product", productSchema);
 
 const sofaSizes = [
   "2-seater",

@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 // Schema for an item in the shopping cart
 const CartItemSchema = new Schema({
-  product: {
+  product_id: {
     type: Schema.Types.ObjectId,
     ref: "Product",
     required: true,
@@ -18,9 +18,13 @@ const CartItemSchema = new Schema({
 // Schema for the shopping cart
 const CartSchema = new Schema(
   {
+    user_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
     email: {
       type: String,
-      required: true,
     },
     items: {
       type: [CartItemSchema],
@@ -30,6 +34,4 @@ const CartSchema = new Schema(
   { timestamps: true }
 );
 
-const Cart = mongoose.models.Cart || mongoose.model("Cart", CartSchema);
-
-export default Cart;
+export default mongoose.models.Cart || mongoose.model("Cart", CartSchema);

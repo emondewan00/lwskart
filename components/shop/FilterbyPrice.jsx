@@ -15,8 +15,8 @@ const FilterByPrice = () => {
     if (params.get("maxPrice")) {
       setMaxPrice(params.get("maxPrice"));
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const handleChange = (e) => {
     if (e.target.name === "minPrice") {
       if (e.target.value) {
@@ -35,6 +35,8 @@ const FilterByPrice = () => {
       } else {
         setMaxPrice(e.target.value);
         params.delete("maxPrice");
+        params.append("maxPrice", e.target.value);
+        console.log("maxPrice", e.target.value);
       }
     }
     router.push(`${pathName}?${params.toString()}`);
