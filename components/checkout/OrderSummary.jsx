@@ -62,7 +62,7 @@ const OrderSummary = () => {
           className="text-primary focus:ring-0 rounded-sm cursor-pointer w-3 h-3"
         />
         <label
-          for="aggrement"
+          htmlFor="aggrement"
           className="text-gray-600 ml-3 cursor-pointer text-sm"
         >
           I agree to the{" "}

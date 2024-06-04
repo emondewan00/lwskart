@@ -4,20 +4,18 @@ import { auth } from "@/auth";
 
 const CartPage = async () => {
   const session = await auth();
-  const cartList = await fetch(
-    `http://localhost:3000/api/cart/${session?.user?.id}`,
-    {
-      next: {
-        tags: ["cartItems"],
-      },
-    }
-  );
+  const serverUlr = process.env.SERVER_URL;
+  const cartList = await fetch(`${serverUlr}/cart/${session?.user?.id}`, {
+    next: {
+      tags: ["cartItems"],
+    },
+  });
   const data = await cartList.json();
   return (
     <div className="my-8 container">
-      <div className="flex gap-x-4 h-fit">
+      <div className="grid grid-cols-8 gap-x-4 h-fit">
         {/* left side */}
-        <div className="p-4 w-full bg-white shadow-md h-fit space-y-4">
+        <div className="col-span-6 p-4 w-full bg-white shadow-md h-fit space-y-4">
           <div className="hidden lg:flex gap-x-4 mb-4 bg-[#FEF0F0] px-4 py-2 *:text-xl">
             <p>Image</p>
             <p className="ml-auto">Product Name</p>
@@ -32,7 +30,7 @@ const CartPage = async () => {
           ))}
         </div>
         {/* Cart Summary */}
-        <CartSummary />
+        <CartSummary data={data} />
       </div>
     </div>
   );

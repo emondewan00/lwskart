@@ -1,6 +1,7 @@
 "use server";
 import connectMongo from "@/lib/connectDb";
 import cartModel from "@/schema/cartModel";
+import updateProductInventory from "@/utils/updateProductInventory";
 import { Types } from "mongoose";
 import { revalidateTag } from "next/cache";
 const addToCart = async (data) => {
@@ -10,8 +11,18 @@ const addToCart = async (data) => {
     item: { product_id, quantity },
   } = data;
   await connectMongo();
-  // Find the user's cart
-  let cart = await cartModel.findOne({ user_id: new Types.ObjectId(user_id) });
+  const updateProductQuantity = await updateProductInventory(
+    product_id,
+    quantity,
+    "inc"
+  );
+
+  // if updateProductQuantity is not available or not updated
+  if (updateProductQuantity.status === "error") return null;
+  // Find the user cart
+  let cart = await cartModel.findOne({
+    user_id: new Types.ObjectId(user_id),
+  });
 
   //if cart not found create new cart
   if (!cart) {

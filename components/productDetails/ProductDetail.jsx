@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import { FaFacebook, FaInstagram, FaStar, FaTwitter } from "react-icons/fa";
 import AddToCartAndWishlist from "./AddToCartAndWishList";
 import { auth } from "@/auth";
+import ShareButtons from "./ShareButtons";
 const ProductDetail = async ({ id }) => {
   const session = await auth();
   await connectMongo();
@@ -20,21 +21,21 @@ const ProductDetail = async ({ id }) => {
     category,
     brand,
     reviewsNumber,
-    ratings,
-    availability,
+    rating,
+    quantities
   } = product;
   if (!product) {
     notFound();
   }
 
-  const a = Array(Math.round(ratings)).fill(0);
+  const a = Array(Math.round(rating)).fill(0);
   return (
     <div className="container grid grid-cols-2 gap-6">
       <div>
         <Image
           width={740}
           height={550}
-          src={`${image[0] + "?pdID=" + id} `}
+          src={`${image[0] } `}
           alt={product?.name}
           className="w-full"
           quality={100}
@@ -45,7 +46,7 @@ const ProductDetail = async ({ id }) => {
               key={i}
               width={133}
               height={100}
-              src={i === 0 ? img + "?pdID=" + id : img + "?pdID=" + id + i}
+              src={img }
               alt={name}
               className={`w-full cursor-pointer border ${
                 i === 0 && "border-primary"
@@ -72,7 +73,7 @@ const ProductDetail = async ({ id }) => {
         <div className="space-y-2">
           <p className="text-gray-800 font-semibold space-x-2">
             <span>Availability: </span>
-            {availability ? (
+            {quantities ? (
               <span className="text-green-600">In Stock</span>
             ) : (
               <span className="text-red-600">Out of Stock</span>
@@ -88,7 +89,7 @@ const ProductDetail = async ({ id }) => {
           </p>
           <p className="space-x-2">
             <span className="text-gray-800 font-semibold">SKU: </span>
-            <span className="text-gray-600 uppercase">{id.slice(10, 16)}</span>
+            <span className="text-gray-600 uppercase">{sku}</span>
           </p>
         </div>
         <div className="flex items-baseline mb-1 space-x-2 font-roboto mt-4">
@@ -99,9 +100,9 @@ const ProductDetail = async ({ id }) => {
         </div>
         <p className="mt-4 text-gray-600">{description}</p>
 
-        <AddToCartAndWishlist session={session} product={{ id, sku }} />
+        <AddToCartAndWishlist session={session} product={{ id, quantities }} />
 
-        <div className="flex gap-3 mt-4">
+        {/* <div className="flex gap-3 mt-4">
           <a
             href="#"
             className="text-gray-400 hover:text-gray-500 h-8 w-8 rounded-full border border-gray-300 flex items-center justify-center"
@@ -120,7 +121,8 @@ const ProductDetail = async ({ id }) => {
           >
             <FaInstagram />
           </a>
-        </div>
+        </div> */}
+        <ShareButtons name={name} />
       </div>
     </div>
   );

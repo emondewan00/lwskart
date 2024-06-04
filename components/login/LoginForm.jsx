@@ -16,7 +16,7 @@ const LoginForm = () => {
         <form action={dispatch} method="post" autocomplete="off">
           <div className="space-y-2">
             <div>
-              <label for="email" className="text-gray-600 mb-2 block">
+              <label htmlFor="email" className="text-gray-600 mb-2 block">
                 Email address
               </label>
               <input
@@ -28,7 +28,7 @@ const LoginForm = () => {
               />
             </div>
             <div>
-              <label for="password" className="text-gray-600 mb-2 block">
+              <label htmlFor="password" className="text-gray-600 mb-2 block">
                 Password
               </label>
               <input
@@ -49,7 +49,7 @@ const LoginForm = () => {
                 className="text-primary focus:ring-0 rounded-sm cursor-pointer"
               />
               <label
-                for="remember"
+                htmlFor="remember"
                 className="text-gray-600 ml-3 cursor-pointer"
               >
                 Remember me

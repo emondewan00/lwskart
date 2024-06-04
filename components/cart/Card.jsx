@@ -2,7 +2,7 @@ import Image from "next/image";
 import QuantityInput from "./QuantityInput";
 
 const Card = ({ item: { product_id, quantity } }) => {
-  const { name, image, price, discount_price, category, sku, _id } = product_id;
+  const { name, image, price, discount_price, category, quantities, _id } = product_id;
 
   return (
     <div className=" flex gap-x-4 ">
@@ -28,7 +28,7 @@ const Card = ({ item: { product_id, quantity } }) => {
       </div>
 
       <div className="flex justify-between flex-col-reverse lg:flex lg:items-center ml-auto lg:flex-row lg:justify-normal">
-        <QuantityInput product={{ quantity, _id, sku }} />
+        <QuantityInput product={{ quantity, _id, quantities }} />
 
        
       </div>

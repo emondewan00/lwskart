@@ -6,8 +6,8 @@ import AddToCartBTN from "./AddToCartBTN";
 import AddToWishList from "./AddToWishList";
 
 const ProductCard = async ({ product }) => {
-  const { _id, name, image, price, discount_price, ratings } = product;
-  const rating = Array(Math.round(ratings)).fill(0);
+  const { _id, name, image, price, discount_price, rating } = product;
+  const r = Array(Math.round(rating)).fill(0);
   const session = await auth();
 
   return (
@@ -16,7 +16,7 @@ const ProductCard = async ({ product }) => {
         <Image
           width={365}
           height={250}
-          src={`${image[0] + "&" + _id}`}
+          src={`${image[0]}`}
           alt={name}
           className="w-full"
         />
@@ -50,7 +50,7 @@ const ProductCard = async ({ product }) => {
 
         <div className="flex items-center">
           <div className="flex gap-1 text-sm text-yellow-400">
-            {rating.map((_, idx) => (
+            {r.map((_, idx) => (
               <span key={idx}>
                 <FaStar />
               </span>

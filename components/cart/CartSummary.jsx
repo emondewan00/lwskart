@@ -1,39 +1,91 @@
-const CartSummary = () => {
+const CartSummary = ({ data }) => {
+  const totalPrice = data?.items?.reduce(
+    (sum, item) => item?.product_id?.price * item?.quantity + sum,
+    0
+  );
   return (
-    <div className="max-w-sm mx-auto h-fit bg-white dark:bg-zinc-800 p-6 rounded-lg shadow-lg lg:block hidden">
-      <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-4">
-        Order Summary
-      </h2>
-      <div className="border-t border-zinc-200 dark:border-zinc-700 pt-4">
-        <div className="flex justify-between items-center mb-4 gap-x-4">
-          <p className="text-zinc-700 dark:text-zinc-300 text-nowrap">
-            Add Coupon
-          </p>
-          <input
-            type="text"
-            className="border border-zinc-300 dark:border-zinc-600 rounded-full px-3 py-1 text-zinc-700 dark:text-zinc-300 focus:outline-none focus:ring-2 focus:ring-pink-500"
-            placeholder="Coupon Code"
-          />
+    <>
+      <div className="h-fit col-span-2 p-4 rounded w-full shadow-md">
+        <h4 className="text-gray-800 text-lg mb-4 font-medium uppercase">
+          order summary
+        </h4>
+        <div className="space-y-2">
+          {data?.items?.length > 0 &&
+            data?.items?.map((item) => (
+              <div key={item._id} className="flex justify-between">
+                <div className="flex gap-x-2">
+                  <p className="text-gray-600">x{item?.quantity}</p>
+                  <h5 className="text-gray-800 font-medium">
+                    {item?.product_id?.name}
+                  </h5>
+                </div>
+                <p className="text-gray-800 font-medium">
+                  ${item?.product_id?.price}
+                </p>
+              </div>
+            ))}
         </div>
-        <div className="flex justify-between items-center mb-2">
-          <span className="text-zinc-700 dark:text-zinc-300">Subtotal</span>
-          <span className="text-zinc-900 dark:text-zinc-100">$ 1000</span>
+
+        <div className="flex justify-between border-b border-gray-200 mt-1 text-gray-800 font-medium py-3 uppercase">
+          <p>subtotal</p>
+          <p>${totalPrice?.toFixed(2)}</p>
         </div>
-        <div className="flex justify-between items-center mb-2">
-          <span className="text-zinc-700 dark:text-zinc-300">Shipping</span>
-          <span className="text-zinc-900 dark:text-zinc-100">Free</span>
+
+        <div className="flex justify-between border-b border-gray-200 mt-1 text-gray-800 font-medium py-3 uppercase">
+          <p>shipping</p>
+          <p>Free</p>
         </div>
-        <div className="border-t border-zinc-200 dark:border-zinc-700 pt-4">
-          <div className="flex justify-between items-center mb-4">
-            <span className="text-zinc-700 dark:text-zinc-300">Total</span>
-            <span className="text-zinc-900 dark:text-zinc-100">$ 1000</span>
+
+        <div className="flex justify-between text-gray-800 font-medium py-3 uppercase">
+          <p className="font-semibold">Total</p>
+          <p>${totalPrice?.toFixed(2)}</p>
+        </div>
+
+        <div className="mb-4">
+          <h3 className="text-lg font-semibold mb-2 dark:text-white">
+            Payment Method
+          </h3>
+          <div className="flex flex-col">
+            <div className="flex gap-x-1">
+              <input type="radio" name="payment" id="cash" />
+              <label htmlFor="cash" className="text-gray-600">
+                Cash on delivery
+              </label>
+            </div>
+            <div className="flex gap-x-1">
+              <input type="radio" name="payment" id="card" />
+              <label htmlFor="card" className="text-gray-600">
+                Credit card
+              </label>
+            </div>
           </div>
-          <button className="w-full bg-pink-500 text-white py-2 rounded-full hover:bg-pink-600 focus:outline-none focus:ring-2 focus:ring-pink-500">
-            Checkout
-          </button>
         </div>
+        <div className="flex items-center mb-4 mt-2">
+          <input
+            type="checkbox"
+            name="aggrement"
+            id="aggrement"
+            className="text-primary focus:ring-0 rounded-sm cursor-pointer w-3 h-3"
+          />
+          <label
+            htmlFor="aggrement"
+            className="text-gray-600 ml-3 cursor-pointer text-sm"
+          >
+            I agree to the{" "}
+            <a href="#" className="text-primary">
+              terms & conditions
+            </a>
+          </label>
+        </div>
+
+        <a
+          href="#"
+          className="block w-full py-3 px-4 text-center text-white bg-primary border border-primary rounded-md hover:bg-transparent hover:text-primary transition font-medium"
+        >
+          Place order
+        </a>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -2,8 +2,12 @@ import ProductContainer from "@/components/category/ProductContainer";
 import FilterByCategory from "@/components/shop/FilterByCategory";
 import FilterBySize from "@/components/shop/FilterBySize";
 import FilterByPrice from "@/components/shop/FilterbyPrice";
+import filterData from "@/data/categoryFilterData";
+import getFilterData from "@/lib/getFilterData";
+const CategoryPage =async ({ params: { categoryName } }) => {
+  const data = await getFilterData(categoryName)
+  console.log(data)
 
-const CategoryPage = ({ params: { categoryName } }) => {
   return (
     <>
       <div className="container grid md:grid-cols-4 grid-cols-2 gap-6 pt-4 pb-16 items-start">

@@ -1,6 +1,5 @@
 import connectMongo from "@/lib/connectDb";
 import Wishlist from "@/schema/wishlistModel";
-import mongoose from "mongoose";
 import { NextResponse } from "next/server";
 
 export const GET = async (req, { params: { user_id } }) => {

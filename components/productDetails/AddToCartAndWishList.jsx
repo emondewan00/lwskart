@@ -5,9 +5,10 @@ import { BsBag } from "react-icons/bs";
 const AddToCartAndWishlist = ({ session, product }) => {
   const [quantity, setQuantity] = useState(1);
   const cart = {
+    user_id: session?.user?.id,
     email: session?.user?.email,
     item: {
-      product: product.id,
+      product_id: product.id,
       quantity,
     },
   };
@@ -31,12 +32,12 @@ const AddToCartAndWishlist = ({ session, product }) => {
             type="number"
             value={quantity}
             min={1}
-            max={product.sku}
+            max={product.quantities}
             className="h-8 w-20 outline-none text-base px-2"
             readOnly
           />
           <button
-            disabled={quantity === product.sku}
+            disabled={quantity === product.quantities}
             onClick={() => setQuantity((prev) => prev + 1)}
             className="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none"
           >

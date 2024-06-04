@@ -5,6 +5,7 @@ import Categories from "@/components/home/Categories";
 import Features from "@/components/home/Features";
 import NewArrival from "@/components/home/NewArrival";
 import Product from "@/components/home/Product";
+import { Suspense } from "react";
 
 export default async function Home() {
   const session = await auth();
@@ -14,7 +15,9 @@ export default async function Home() {
       <Banner />
       <Features />
       <Categories />
-      <NewArrival />
+      <Suspense fallback={<></>}>
+        <NewArrival />
+      </Suspense>
       <Ads />
       <Product />
     </>

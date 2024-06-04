@@ -31,7 +31,7 @@ const categoryLinks = [
     id: 5,
     imgPath: "/images/category/category-5.jpg",
     category: "Living Room",
-    href: "/category/living-room",
+    href: "/category/living room",
     icon: "/images/icons/terrace.svg",
   },
   {

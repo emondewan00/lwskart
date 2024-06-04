@@ -13,7 +13,9 @@ const AddToWishList = ({ session, product_id }) => {
       <button
         disabled={!session?.user}
         type="submit"
-        className="text-white text-lg w-9 h-9 rounded-full bg-primary flex items-center justify-center hover:bg-gray-800 transition"
+        className={`text-white text-lg w-9 h-9 rounded-full bg-primary flex items-center justify-center hover:bg-gray-800 transition ${
+          !session?.user ? "cursor-not-allowed" : "cursor-pointer"
+        } `}
         title="add to wishlist"
       >
         <FaRegHeart />

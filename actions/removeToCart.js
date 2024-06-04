@@ -20,7 +20,6 @@ const removeToCart = async (data) => {
     }
   );
 
-  console.log("cartItems updated", removeCartItem);
   revalidateTag("cartItems");
   return removeCartItem;
 };

@@ -9,7 +9,7 @@ const FilterBySize = () => {
         <div className="size-selector">
           <input type="radio" name="size" id="size-xs" className="hidden" />
           <label
-            for="size-xs"
+            htmlFor="size-xs"
             className="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600"
           >
             XS
@@ -18,7 +18,7 @@ const FilterBySize = () => {
         <div className="size-selector">
           <input type="radio" name="size" id="size-sm" className="hidden" />
           <label
-            for="size-sm"
+            htmlFor="size-sm"
             className="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600"
           >
             S
@@ -27,7 +27,7 @@ const FilterBySize = () => {
         <div className="size-selector">
           <input type="radio" name="size" id="size-m" className="hidden" />
           <label
-            for="size-m"
+            htmlFor="size-m"
             className="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600"
           >
             M
@@ -36,7 +36,7 @@ const FilterBySize = () => {
         <div className="size-selector">
           <input type="radio" name="size" id="size-l" className="hidden" />
           <label
-            for="size-l"
+            htmlFor="size-l"
             className="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600"
           >
             L
@@ -45,7 +45,7 @@ const FilterBySize = () => {
         <div className="size-selector">
           <input type="radio" name="size" id="size-xl" className="hidden" />
           <label
-            for="size-xl"
+            htmlFor="size-xl"
             className="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600"
           >
             XL

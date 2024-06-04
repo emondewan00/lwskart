@@ -6,11 +6,10 @@ import { useSession } from "next-auth/react";
 import { useState, useTransition } from "react";
 
 const QuantityInput = ({ product }) => {
-  const { quantity: q, _id, sku } = product;
+  const { quantity: q, _id, quantities } = product;
   const [quantity, setQuantity] = useState(q || 0);
   const [isPending, startTransition] = useTransition();
   const { data } = useSession();
-  
   return (
     <>
       <div className="flex items-center py-2 px-4  h-fit rounded ">
@@ -21,7 +20,8 @@ const QuantityInput = ({ product }) => {
             setQuantity((prev) => prev - 1);
             adjustQuantity({
               user_id: data?.user?.id,
-              quantity: quantity - 1,
+              quantity:quantity - 1,
+              type: "dec",
               product_id: _id,
             });
           }}
@@ -33,16 +33,17 @@ const QuantityInput = ({ product }) => {
           type="number"
           readOnly
           value={quantity || 0}
-          max={sku}
+          max={quantities}
         />
         <button
           className="px-2 font-bold"
-          disabled={quantity === product.sku}
+          disabled={quantity === product.quantities}
           onClick={() => {
             setQuantity((prev) => prev + 1);
             adjustQuantity({
               user_id: data?.user?.id,
-              quantity: quantity + 1,
+              quantity:quantity+ 1,
+              type: "inc",
               product_id: _id,
             });
           }}

@@ -8,17 +8,15 @@ import SearchInput from "./SearchInput";
 
 const Header = async () => {
   const session = await auth();
-  const res = await fetch(
-    `http://localhost:3000/api/cart/${session?.user?.id}`,
-    {
-      next: {
-        tags: ["cartLength"],
-      },
-    }
-  );
+  const serverUlr = process.env.SERVER_URL;
+  const res = await fetch(`${serverUlr}/cart/${session?.user?.id}`, {
+    next: {
+      tags: ["cartLength"],
+    },
+  });
   const lengthCart = await res.json();
   const wishlistRes = await fetch(
-    `http://localhost:3000/api/wishlist/${session?.user?.id}`,
+    `${serverUlr}/wishlist/${session?.user?.id}`,
     {
       next: {
         tags: ["wishlistLength"],
