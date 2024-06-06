@@ -11,6 +11,7 @@ const CartPage = async () => {
     },
   });
   const data = await cartList.json();
+  console.log(data);
   return (
     <div className="my-8 container">
       <div className="grid grid-cols-8 gap-x-4 h-fit">

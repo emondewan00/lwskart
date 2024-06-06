@@ -20,7 +20,8 @@ const QuantityInput = ({ product }) => {
             setQuantity((prev) => prev - 1);
             adjustQuantity({
               user_id: data?.user?.id,
-              quantity:quantity - 1,
+              quantity: quantity - 1,
+              incOrDecNum: 1,
               type: "dec",
               product_id: _id,
             });
@@ -42,7 +43,8 @@ const QuantityInput = ({ product }) => {
             setQuantity((prev) => prev + 1);
             adjustQuantity({
               user_id: data?.user?.id,
-              quantity:quantity+ 1,
+              quantity: quantity + 1,
+              incOrDecNum: 1,
               type: "inc",
               product_id: _id,
             });
@@ -58,6 +60,7 @@ const QuantityInput = ({ product }) => {
             removeToCart({
               user_id: data?.user.id,
               product_id: _id,
+              quantity: q,
             });
           })
         }

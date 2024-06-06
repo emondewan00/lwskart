@@ -1,19 +1,17 @@
 "use server";
-import checkQuantity from "@/lib/checkQuantity";
 import connectMongo from "@/lib/connectDb";
 import cartModel from "@/schema/cartModel";
 import updateProductInventory from "@/utils/updateProductInventory";
 import { Types } from "mongoose";
 import { revalidateTag } from "next/cache";
 const adjustQuantity = async (data) => {
-  const { user_id, product_id, quantity, type } = data;
+  const { user_id, product_id, quantity, type ,incOrDecNum} = data;
   await connectMongo();
-  console.log(type, "updateProductInventory");
-  console.log(data,"hello adjustQuantity")
   const updateProductQuantity = await updateProductInventory(
     product_id,
     quantity,
-    type
+    type,
+    incOrDecNum
   );
   // if updateProductQuantity is not available or not updated
   if (updateProductQuantity.status === "error") return null;

@@ -4,8 +4,7 @@ import userModel from "./userModel";
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-// Schema for an item in the shopping cart
-const CartItemSchema = new Schema({
+const orderItems = new Schema({
   product_id: {
     type: Schema.Types.ObjectId,
     ref: productModel,
@@ -18,8 +17,7 @@ const CartItemSchema = new Schema({
   },
 });
 
-// Schema for the shopping cart
-const CartSchema = new Schema(
+const orderSchema = new Schema(
   {
     user_id: {
       type: mongoose.Schema.Types.ObjectId,
@@ -30,11 +28,23 @@ const CartSchema = new Schema(
       type: String,
     },
     items: {
-      type: [CartItemSchema],
+      type: [orderItems],
       require: true,
+    },
+    totalPrice: {
+      type: Number,
+      required: true,
+    },
+    status: {
+      type: String,
+      enum: ["pending", "processing", "shipped", "delivered"],
+      default: "pending",
     },
   },
   { timestamps: true }
 );
 
-export default mongoose.models?.Cart || mongoose.model("Cart", CartSchema);
+const OrderModel =
+  mongoose.models.Order || mongoose.model("Order", orderSchema);
+
+export default OrderModel;

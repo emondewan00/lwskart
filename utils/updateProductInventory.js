@@ -6,12 +6,17 @@ import connectMongo from "@/lib/connectDb";
 import productModel from "@/schema/productModel";
 import { Types } from "mongoose";
 
-const updateProductInventory = async (product, quantity, type) => {
+const updateProductInventory = async (
+  product,
+  quantity,
+  type,
+  incOrDecNum = 1
+) => {
   await connectMongo();
   if (type === "dec") {
     const update = await productModel.updateOne(
       { _id: new Types.ObjectId(product) },
-      { $inc: { quantities: 1 } }
+      { $inc: { quantities: incOrDecNum } }
     );
     return { message: "Product updated", status: "success" };
   }
@@ -23,7 +28,7 @@ const updateProductInventory = async (product, quantity, type) => {
   if (availability) {
     const update = await productModel.updateOne(
       { _id: new Types.ObjectId(product) },
-      { $inc: { quantities: -1 } }
+      { $inc: { quantities: -incOrDecNum } }
     );
     return { message: "Product updated", status: "success" };
   }

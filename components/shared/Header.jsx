@@ -9,11 +9,14 @@ import SearchInput from "./SearchInput";
 const Header = async () => {
   const session = await auth();
   const serverUlr = process.env.SERVER_URL;
-  const res = await fetch(`${serverUlr}/cart/${session?.user?.id}`, {
-    next: {
-      tags: ["cartLength"],
-    },
-  });
+  const res = await fetch(
+    `${serverUlr}/cart/${session?.user?.id}?length=true`,
+    {
+      next: {
+        tags: ["cartLength"],
+      },
+    }
+  );
   const lengthCart = await res.json();
   const wishlistRes = await fetch(
     `${serverUlr}/wishlist/${session?.user?.id}`,
@@ -24,6 +27,7 @@ const Header = async () => {
     }
   );
   const lengthWishlist = await wishlistRes.json();
+
   return (
     <header className="py-4 shadow-sm bg-white">
       <div className="container flex items-center justify-between">

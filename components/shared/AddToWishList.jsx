@@ -1,12 +1,13 @@
 "use client";
 import addToWishList from "@/actions/addWishList";
+import { redirect } from "next/navigation";
 import { FaRegHeart } from "react-icons/fa";
 
 const AddToWishList = ({ session, product_id }) => {
   const wishSubmit = async (e) => {
     e.preventDefault();
-    if (!session?.user) return;
-    addToWishList({ user_id: session?.user?.id, product_id });
+    if (!session?.user) return redirect("/login");
+    await addToWishList({ user_id: session?.user?.id, product_id });
   };
   return (
     <form onSubmit={wishSubmit}>

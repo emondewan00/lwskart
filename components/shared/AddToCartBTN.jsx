@@ -1,8 +1,16 @@
 "use client";
 import addToCart from "@/actions/addToCart";
+import removeToWishList from "@/actions/removeToWishList";
 import { redirect } from "next/navigation";
 
-const AddToCartBTN = ({ session, pd, style = "", formStyle = "" }) => {
+const AddToCartBTN = ({
+  session,
+  pd,
+  style = "",
+  formStyle = "",
+  quantities,
+  removeToWishlist = false,
+}) => {
   const cart = {
     user_id: session?.user?.id,
     email: session?.user?.email,
@@ -13,19 +21,24 @@ const AddToCartBTN = ({ session, pd, style = "", formStyle = "" }) => {
   };
   const cartHandler = async (e) => {
     e.preventDefault();
-    if (!session?.user) return redirect("/login");
+    if (!session?.user || !quantities) return redirect("/login");
+    if (removeToWishlist) {
+      removeToWishList({ user_id: session?.user?.id, product_id: pd });
+    }
     await addToCart(cart);
   };
   return (
     <form onSubmit={cartHandler} className={formStyle}>
       <button
-        disabled={!session?.user}
+        disabled={!session?.user || !quantities}
         type="submit"
         className={` w-full py-1 text-center text-white bg-primary border border-primary  hover:bg-transparent hover:text-primary transition  ${style} ${
-          !session?.user ? "cursor-not-allowed" : "cursor-pointer"
+          !session?.user || !quantities
+            ? "cursor-not-allowed"
+            : "cursor-pointer"
         } `}
       >
-        Add to cart
+        {quantities ? "Add to cart" : "Stock Out"}
       </button>
     </form>
   );

@@ -13,10 +13,10 @@ const addToWishList = async (data) => {
   });
   revalidateTag("wishlistLength");
   if (find) {
-    return find;
+    return { message: "Product already added to wishlist" };
   }
   const newWishList = await Wishlist.create(data);
-  return newWishList;
+  return { message: "Wishlist added successfully" };
 };
 
 export default addToWishList;

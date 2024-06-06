@@ -1,9 +1,12 @@
 "use client";
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import addToCart from "@/actions/addToCart";
 import { BsBag } from "react-icons/bs";
+import { FaHeart } from "react-icons/fa";
+import addToWishList from "@/actions/addWishList";
 const AddToCartAndWishlist = ({ session, product }) => {
   const [quantity, setQuantity] = useState(1);
+  const [pending, startTransition] = useTransition();
   const cart = {
     user_id: session?.user?.id,
     email: session?.user?.email,
@@ -37,7 +40,7 @@ const AddToCartAndWishlist = ({ session, product }) => {
             readOnly
           />
           <button
-            disabled={quantity === product.quantities}
+            disabled={quantity > product.quantities || !product?.quantities}
             onClick={() => setQuantity((prev) => prev + 1)}
             className="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none"
           >
@@ -49,18 +52,36 @@ const AddToCartAndWishlist = ({ session, product }) => {
       <div className="mt-6 flex gap-3 border-b border-gray-200 pb-5 pt-5">
         <form onSubmit={cartHandler}>
           <button
+            disabled={quantity > product.quantities || !product?.quantities}
             type="submit"
-            className="bg-primary border border-primary text-white px-8 py-2 font-medium rounded uppercase flex items-center gap-2 hover:bg-transparent hover:text-primary transition"
+            className={`bg-primary border border-primary text-white px-8 py-2 font-medium rounded uppercase flex items-center gap-2 hover:bg-transparent hover:text-primary transition ${
+              quantity > product.quantities || !product?.quantities
+                 ? "cursor-not-allowed"
+                : "cursor-pointer"
+            }`}
           >
-            <BsBag /> Add to cart
+            {product?.quantities ? (
+              <>
+                <BsBag /> Add to cart
+              </>
+            ) : (
+              "Out of Stock"
+            )}
           </button>
         </form>
-        <a
-          href="#"
+        <button
+          onClick={() =>
+            startTransition(() => {
+              addToWishList({
+                product_id: product.id,
+                user_id: session?.user?.id,
+              });
+            })
+          }
           className="border border-gray-300 text-gray-600 px-8 py-2 font-medium rounded uppercase flex items-center gap-2 hover:text-primary transition"
         >
-          <i className="fa-solid fa-heart"></i> Wishlist
-        </a>
+          <FaHeart /> Wishlist
+        </button>
       </div>
     </>
   );

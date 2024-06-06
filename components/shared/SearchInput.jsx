@@ -1,12 +1,11 @@
 "use client";
 import { FaSearch } from "react-icons/fa";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 const SearchInput = () => {
   const [search, setSearch] = useState("");
   const searchParams = useSearchParams();
   const router = useRouter();
-  const pathName = usePathname();
   const params = new URLSearchParams(searchParams);
   useEffect(() => {
     const q = params.get("q");

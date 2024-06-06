@@ -6,10 +6,11 @@ import AddToCartBTN from "./AddToCartBTN";
 import AddToWishList from "./AddToWishList";
 
 const ProductCard = async ({ product }) => {
-  const { _id, name, image, price, discount_price, rating } = product;
+  const { _id, name, image, price, discount_price, rating, quantities } =
+    product;
   const r = Array(Math.round(rating)).fill(0);
   const session = await auth();
-
+  const stringID = _id.toString();
   return (
     <div className="bg-white shadow rounded overflow-hidden group flex flex-col">
       <div className="relative">
@@ -31,7 +32,7 @@ const ProductCard = async ({ product }) => {
           >
             <FaSearch />
           </Link>
-          <AddToWishList session={session} product_id={_id?.toString()} />
+          <AddToWishList session={session} product_id={stringID} />
         </div>
       </div>
       <div className="pt-4 pb-3 px-4 ">
@@ -61,7 +62,8 @@ const ProductCard = async ({ product }) => {
       </div>
       <AddToCartBTN
         session={session}
-        pd={_id?.toString()}
+        pd={stringID}
+        quantities={quantities}
         formStyle={"mt-auto"}
       />
     </div>

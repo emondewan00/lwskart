@@ -3,9 +3,8 @@ import AddToCartBTN from "../shared/AddToCartBTN";
 import { auth } from "@/auth";
 import DeleteWishList from "./DeleteToWishList";
 const WishlistCard = async ({ data: { product_id } }) => {
-  const { name, image, discount_price, availability, _id } = product_id;
-  const { user } = await auth();
-
+  const { name, image, discount_price, quantities, _id } = product_id || {};
+  const session = await auth();
   return (
     <div className="grid grid-cols-4 p-4 border-gray-200 rounded border">
       <div className="col-span-3 flex gap-4 items-center">
@@ -24,7 +23,7 @@ const WishlistCard = async ({ data: { product_id } }) => {
           </h2>
           <p className="text-gray-500 text-sm">
             Availability:
-            {availability ? (
+            {quantities ? (
               <span className="text-green-600">In Stock</span>
             ) : (
               <span className="text-red-600">Out of Stock</span>
@@ -37,8 +36,17 @@ const WishlistCard = async ({ data: { product_id } }) => {
         </div>
       </div>
       <div className="flex items-center gap-8">
-        <AddToCartBTN user={user} pd={product_id} style={"px-4 rounded "} />
-        <DeleteWishList user_id={user?.id} product_id={_id} />
+        <AddToCartBTN
+          session={session}
+          pd={_id.toString()}
+          quantities={quantities}
+          style={"px-4 rounded "}
+          removeToWishlist={true}
+        />
+        <DeleteWishList
+          user_id={session?.user?.id}
+          product_id={_id.toString()}
+        />
       </div>
     </div>
   );

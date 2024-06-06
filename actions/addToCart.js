@@ -4,6 +4,7 @@ import cartModel from "@/schema/cartModel";
 import updateProductInventory from "@/utils/updateProductInventory";
 import { Types } from "mongoose";
 import { revalidateTag } from "next/cache";
+
 const addToCart = async (data) => {
   const {
     user_id,
@@ -32,7 +33,7 @@ const addToCart = async (data) => {
       items: [{ product_id, quantity }],
     });
     revalidateTag("cartLength");
-    return newCart;
+    return { message: "Product added  successfully" };
   }
   // Check if the product already exists in the cart
   const existingItem = cart.items.find((item) =>
@@ -48,7 +49,7 @@ const addToCart = async (data) => {
   revalidateTag("cartLength");
   // Save the cart
   await cart.save();
-  return cart;
+  return { message: "Product added successfully" };
 };
 
 export default addToCart;

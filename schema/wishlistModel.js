@@ -1,15 +1,17 @@
 import mongoose from "mongoose";
+import productModel from "./productModel";
+import userModel from "./userModel";
 
 const wishlistSchema = new mongoose.Schema(
   {
     product_id: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Product",
+      ref: productModel,
       required: true,
     },
     user_id: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      ref: userModel,
       required: true,
     },
   },
