@@ -16,19 +16,19 @@ const updateProductInventory = async (
   if (type === "dec") {
     const update = await productModel.updateOne(
       { _id: new Types.ObjectId(product) },
-      { $inc: { quantities: incOrDecNum } }
+      { $inc: { quantities: incOrDecNum, soldCount: -incOrDecNum } }
     );
     return { message: "Product updated", status: "success" };
   }
 
-  const availability = await checkQuantity(product, quantity);
+  const availability = await checkQuantity(product, incOrDecNum);
   if (!availability) {
     return { message: "Product not available", status: "error" };
   }
   if (availability) {
     const update = await productModel.updateOne(
       { _id: new Types.ObjectId(product) },
-      { $inc: { quantities: -incOrDecNum } }
+      { $inc: { quantities: -incOrDecNum, soldCount: incOrDecNum } }
     );
     return { message: "Product updated", status: "success" };
   }

@@ -1,23 +1,27 @@
 "use client";
-import { useState, useTransition } from "react";
-import addToCart from "@/actions/addToCart";
-import { BsBag } from "react-icons/bs";
-import { FaHeart } from "react-icons/fa";
 import addToWishList from "@/actions/addWishList";
-const AddToCartAndWishlist = ({ session, product }) => {
-  const [quantity, setQuantity] = useState(1);
-  const [pending, startTransition] = useTransition();
-  const cart = {
-    user_id: session?.user?.id,
-    email: session?.user?.email,
-    item: {
-      product_id: product.id,
-      quantity,
-    },
-  };
+import cartAction from "@/actions/cartAction";
+import { useRouter } from "next/navigation";
+import { useState, useTransition } from "react";
+import { FaHeart } from "react-icons/fa";
+
+const CartAndWishBtn = ({ user, product }) => {
+  const [quantity, setQuantity] = useState(0);
+  const router = useRouter();
   const cartHandler = async (e) => {
     e.preventDefault();
-    await addToCart(cart);
+    if (!user) return router.push("/login");
+    await cartAction({
+      user,
+      product: { ...product, quantity },
+      incOrDecNum: quantity,
+      type: "inc",
+    });
+  };
+  const WishlistHandler = async (e) => {
+    e.preventDefault();
+    if (!user) return router.push("/login");
+    addToWishList({ user_id: user.id, product_id: product.id });
   };
   return (
     <>
@@ -33,14 +37,14 @@ const AddToCartAndWishlist = ({ session, product }) => {
           </button>
           <input
             type="number"
-            value={quantity}
             min={1}
-            max={product.quantities}
+            value={quantity}
+            max={product?.quantities}
             className="h-8 w-20 outline-none text-base px-2"
             readOnly
           />
           <button
-            disabled={quantity > product.quantities || !product?.quantities}
+            disabled={quantity >= product?.quantities}
             onClick={() => setQuantity((prev) => prev + 1)}
             className="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none"
           >
@@ -52,39 +56,24 @@ const AddToCartAndWishlist = ({ session, product }) => {
       <div className="mt-6 flex gap-3 border-b border-gray-200 pb-5 pt-5">
         <form onSubmit={cartHandler}>
           <button
-            disabled={quantity > product.quantities || !product?.quantities}
+            disabled={quantity > product?.quantities || !product?.quantities}
             type="submit"
             className={`bg-primary border border-primary text-white px-8 py-2 font-medium rounded uppercase flex items-center gap-2 hover:bg-transparent hover:text-primary transition ${
-              quantity > product.quantities || !product?.quantities
-                 ? "cursor-not-allowed"
-                : "cursor-pointer"
+              product?.quantities ? "cursor-pointer" : "cursor-not-allowed"
             }`}
           >
-            {product?.quantities ? (
-              <>
-                <BsBag /> Add to cart
-              </>
-            ) : (
-              "Out of Stock"
-            )}
+            {product?.quantities ? "Add to Cart" : "Out of Stock"}
           </button>
         </form>
-        <button
-          onClick={() =>
-            startTransition(() => {
-              addToWishList({
-                product_id: product.id,
-                user_id: session?.user?.id,
-              });
-            })
-          }
-          className="border border-gray-300 text-gray-600 px-8 py-2 font-medium rounded uppercase flex items-center gap-2 hover:text-primary transition"
-        >
-          <FaHeart /> Wishlist
-        </button>
+
+        <form onSubmit={WishlistHandler}>
+          <button className="border border-gray-300 text-gray-600 px-8 py-2 font-medium rounded uppercase flex items-center gap-2 hover:text-primary transition">
+            <FaHeart /> Wishlist
+          </button>
+        </form>
       </div>
     </>
   );
 };
 
-export default AddToCartAndWishlist;
+export default CartAndWishBtn;

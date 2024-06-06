@@ -1,10 +1,11 @@
 import Image from "next/image";
-import AddToCartBTN from "../shared/AddToCartBTN";
 import { auth } from "@/auth";
 import DeleteWishList from "./DeleteToWishList";
+import CartBTN from "../shared/CartBTN";
 const WishlistCard = async ({ data: { product_id } }) => {
   const { name, image, discount_price, quantities, _id } = product_id || {};
   const session = await auth();
+  const stringID = _id.toString();
   return (
     <div className="grid grid-cols-4 p-4 border-gray-200 rounded border">
       <div className="col-span-3 flex gap-4 items-center">
@@ -36,17 +37,13 @@ const WishlistCard = async ({ data: { product_id } }) => {
         </div>
       </div>
       <div className="flex items-center gap-8">
-        <AddToCartBTN
+        <CartBTN
           session={session}
-          pd={_id.toString()}
-          quantities={quantities}
+          deleteWishItem={true}
+          product={{ id: stringID, quantities }}
           style={"px-4 rounded "}
-          removeToWishlist={true}
         />
-        <DeleteWishList
-          user_id={session?.user?.id}
-          product_id={_id.toString()}
-        />
+        <DeleteWishList user_id={session?.user?.id} product_id={stringID} />
       </div>
     </div>
   );

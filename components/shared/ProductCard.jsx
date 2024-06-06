@@ -2,8 +2,8 @@ import { auth } from "@/auth";
 import Image from "next/image";
 import Link from "next/link";
 import { FaSearch, FaStar } from "react-icons/fa";
-import AddToCartBTN from "./AddToCartBTN";
 import AddToWishList from "./AddToWishList";
+import CartBTN from "./CartBTN";
 
 const ProductCard = async ({ product }) => {
   const { _id, name, image, price, discount_price, rating, quantities } =
@@ -60,10 +60,9 @@ const ProductCard = async ({ product }) => {
           <div className="text-xs text-gray-500 ml-3">(150)</div>
         </div>
       </div>
-      <AddToCartBTN
+      <CartBTN
         session={session}
-        pd={stringID}
-        quantities={quantities}
+        product={{ id: stringID, quantities }}
         formStyle={"mt-auto"}
       />
     </div>

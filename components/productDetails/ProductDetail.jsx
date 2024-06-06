@@ -3,10 +3,10 @@ import productModel from "@/schema/productModel";
 import Image from "next/image";
 import { Types } from "mongoose";
 import { notFound } from "next/navigation";
-import { FaFacebook, FaInstagram, FaStar, FaTwitter } from "react-icons/fa";
-import AddToCartAndWishlist from "./AddToCartAndWishList";
+import { FaStar } from "react-icons/fa";
 import { auth } from "@/auth";
 import ShareButtons from "./ShareButtons";
+import CartAndWishBtn from "./CartAndWishBtn";
 const ProductDetail = async ({ id }) => {
   const session = await auth();
   await connectMongo();
@@ -22,7 +22,7 @@ const ProductDetail = async ({ id }) => {
     brand,
     reviewsNumber,
     rating,
-    quantities
+    quantities,
   } = product;
   if (!product) {
     notFound();
@@ -35,7 +35,7 @@ const ProductDetail = async ({ id }) => {
         <Image
           width={740}
           height={550}
-          src={`${image[0] } `}
+          src={`${image[0]} `}
           alt={product?.name}
           className="w-full"
           quality={100}
@@ -46,7 +46,7 @@ const ProductDetail = async ({ id }) => {
               key={i}
               width={133}
               height={100}
-              src={img }
+              src={img}
               alt={name}
               className={`w-full cursor-pointer border ${
                 i === 0 && "border-primary"
@@ -100,28 +100,12 @@ const ProductDetail = async ({ id }) => {
         </div>
         <p className="mt-4 text-gray-600">{description}</p>
 
-        <AddToCartAndWishlist session={session} product={{ id, quantities }} />
+   
+        <CartAndWishBtn
+          product={{  id, quantities }}
+          user={session?.user}
+        />
 
-        {/* <div className="flex gap-3 mt-4">
-          <a
-            href="#"
-            className="text-gray-400 hover:text-gray-500 h-8 w-8 rounded-full border border-gray-300 flex items-center justify-center"
-          >
-            <FaFacebook />
-          </a>
-          <a
-            href="#"
-            className="text-gray-400 hover:text-gray-500 h-8 w-8 rounded-full border border-gray-300 flex items-center justify-center"
-          >
-            <FaTwitter />
-          </a>
-          <a
-            href="#"
-            className="text-gray-400 hover:text-gray-500 h-8 w-8 rounded-full border border-gray-300 flex items-center justify-center"
-          >
-            <FaInstagram />
-          </a>
-        </div> */}
         <ShareButtons name={name} />
       </div>
     </div>
