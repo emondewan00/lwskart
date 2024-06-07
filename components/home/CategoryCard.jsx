@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 const CategoryCard = ({ category }) => {
   const { imgPath, href, category: categoryName } = category;
-  console.log(imgPath, href);
+ 
   return (
     <div className="relative rounded-sm overflow-hidden group">
       <Image

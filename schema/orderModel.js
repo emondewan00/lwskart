@@ -16,6 +16,15 @@ const orderItems = new Schema({
     default: 1,
   },
 });
+const shippingAddress = new mongoose.Schema({
+  firstName: { type: String, required: true },
+  lastName: { type: String, required: true },
+  address: { type: String, required: true },
+  country: { type: String, required: true },
+  zip: { type: String, required: true },
+  city: { type: String, required: true },
+  phone: { type: String, required: true },
+});
 
 const orderSchema = new Schema(
   {
@@ -35,6 +44,7 @@ const orderSchema = new Schema(
       type: Number,
       required: true,
     },
+    shipping: shippingAddress,
     status: {
       type: String,
       enum: ["pending", "processing", "shipped", "delivered"],

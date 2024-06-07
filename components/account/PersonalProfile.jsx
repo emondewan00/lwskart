@@ -1,5 +1,4 @@
 const PersonalProfile = ({ user }) => {
-  console.log(user);
   return (
     <div className="shadow rounded bg-white px-4 pt-6 pb-8">
       <div className="flex items-center justify-between mb-4">

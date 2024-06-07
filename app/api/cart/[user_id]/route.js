@@ -9,9 +9,11 @@ export const GET = async (req, { params: { user_id } }) => {
     const query = req.nextUrl.searchParams;
 
     if (query.get("length")) {
-      const cart = await cartModel.findOne({
-        user_id: new Types.ObjectId(user_id),
-      });
+      const cart = await cartModel
+        .findOne({
+          user_id: new Types.ObjectId(user_id),
+        })
+        .select("-_id -createdAt -updatedAt -__v");
       return NextResponse.json(cart);
     }
 

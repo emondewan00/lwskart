@@ -11,22 +11,25 @@ const EditShipping = ({ session }) => {
     country: "",
     phone: "",
     zip: "",
+    city: "",
   });
   useEffect(() => {
     if (!session?.user) return;
     const email = session.user.email;
     const fetchUser = async () => {
       try {
-        const res = await fetch(`http://localhost:3000/api/user?email=${email}`);
+        const res = await fetch(
+          `https://lwskart-bice.vercel.app/api/user?email=${email}`
+        );
         if (!res.ok) {
-          throw new Error('Failed to fetch user data');
+          throw new Error("Failed to fetch user data");
         }
         const data = await res.json();
         if (data?.shipping) {
           setUser(data?.shipping);
         }
       } catch (error) {
-        console.error('Error fetching user data:', error);
+        console.error("Error fetching user data:", error);
       }
     };
     fetchUser();
@@ -97,6 +100,20 @@ const EditShipping = ({ session }) => {
           />
         </div>
         <div className="mb-4">
+          <label htmlFor="city" className="block text-zinc-700 ">
+            City
+          </label>
+          <input
+            name="city"
+            id="city"
+            required
+            value={user?.city}
+            onChange={(e) => setUser({ ...user, city: e.target.value })}
+            type="text"
+            className="mt-1 block w-full px-3 py-2 bg-white  border border-zinc-300  rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          />
+        </div>
+        <div className="mb-4">
           <label htmlFor="country" className="block text-zinc-700 ">
             Country
           </label>
@@ -124,16 +141,8 @@ const EditShipping = ({ session }) => {
             className="mt-1 block w-full px-3 py-2 bg-white  border border-zinc-300  rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
           />
         </div>
-        {/* <div className="mb-4">
-        <label className="inline-flex items-center">
-          <input
-            type="checkbox"
-            className="form-checkbox h-5 w-5 text-indigo-600"
-          />
-          <span className="ml-2 text-zinc-700 ">Same as shipping address</span>
-        </label>
-      </div> */}
-        <button className="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50">
+
+        <button className="w-full bg-primary text-white py-2 rounded-md  focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50">
           Update
         </button>
       </form>

@@ -1,6 +1,7 @@
 import Card from "./Card";
 import CartSummary from "./CartSummary";
 import { auth } from "@/auth";
+import EmptyCart from "./EmptyCartItems";
 
 const CartPage = async () => {
   const session = await auth();
@@ -11,6 +12,11 @@ const CartPage = async () => {
     },
   });
   const data = await cartList.json();
+
+  if (!data?.items?.length) {
+    return <EmptyCart />;
+  }
+
   return (
     <div className="my-8 container">
       <div className="grid grid-cols-8 gap-x-4 h-fit">

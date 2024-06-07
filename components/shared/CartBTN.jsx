@@ -1,6 +1,7 @@
 "use client";
 import cartAction from "@/actions/cartAction";
 import removeToWishList from "@/actions/removeToWishList";
+import { useRouter } from "next/navigation";
 
 const CartBTN = ({
   session,
@@ -9,8 +10,10 @@ const CartBTN = ({
   style = "",
   deleteWishItem = false,
 }) => {
+  const router = useRouter();
   const handelSubmit = async (e) => {
     e.preventDefault();
+    if (!session?.user) return router.push("/login");
     if (deleteWishItem) {
       removeToWishList({ user_id: session?.user?.id, product_id: product.id });
     }
@@ -24,7 +27,7 @@ const CartBTN = ({
   return (
     <form onSubmit={handelSubmit} className={formStyle}>
       <button
-        disabled={!session?.user || !product?.quantities}
+        disabled={!product?.quantities}
         type="submit"
         className={`block w-full py-1 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition ${style}`}
       >

@@ -2,7 +2,7 @@
 
 import placeOrder from "@/actions/placeOrder";
 import { useEffect, useState } from "react";
-
+import { useRouter } from "next/navigation";
 const CheckoutForm = ({ session, totalPrice }) => {
   const [checkoutDetails, setCheckoutDetails] = useState({
     firstName: "",
@@ -11,14 +11,16 @@ const CheckoutForm = ({ session, totalPrice }) => {
     country: "",
     phone: "",
     zip: "",
+    city: "",
     company: "",
     email: session?.user?.email || "",
   });
+  const router = useRouter();
   const [cartProducts, setCartProducts] = useState({});
   useEffect(() => {
     const getOrderItems = async () => {
       const orderItems = await fetch(
-        `http://localhost:3000/api/cart/${session?.user?.id}?length=true`
+        `https://lwskart-bice.vercel.app/api/cart/${session?.user?.id}?length=true`
       );
       const items = await orderItems.json();
       setCartProducts(items);
@@ -27,7 +29,7 @@ const CheckoutForm = ({ session, totalPrice }) => {
     const getData = async () => {
       try {
         const res = await fetch(
-          `http://localhost:3000/api/user?email=${session.user.email}`
+          `https://lwskart-bice.vercel.app/api/user?email=${session.user.email}`
         );
         if (!res.ok) {
           throw new Error("Failed to fetch user data");
@@ -47,9 +49,16 @@ const CheckoutForm = ({ session, totalPrice }) => {
     }
   }, [session.user]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    placeOrder({ ...cartProducts, totalPrice });
+    const result = await placeOrder({
+      ...cartProducts,
+      totalPrice,
+      shipping: checkoutDetails,
+    });
+    if (result) {
+      router.push(`/invoice/${result.id}`);
+    }
   };
   return (
     <div className="col-span-6 border border-gray-200 p-4 rounded">
@@ -110,6 +119,24 @@ const CheckoutForm = ({ session, totalPrice }) => {
                 })
               }
               id="company"
+              className="input-box"
+            />
+          </div>
+          <div>
+            <label htmlFor="city" className="text-gray-600">
+              city
+            </label>
+            <input
+              type="text"
+              name="city"
+              value={checkoutDetails?.city}
+              onChange={(e) =>
+                setCheckoutDetails({
+                  ...checkoutDetails,
+                  city: e.target.value,
+                })
+              }
+              id="city"
               className="input-box"
             />
           </div>

@@ -1,15 +1,21 @@
 "use server";
 
 import connectMongo from "@/lib/connectDb";
+import cartModel from "@/schema/cartModel";
 import OrderModel from "@/schema/orderModel";
-import mongoose from "mongoose";
+import { revalidateTag } from "next/cache";
 const placeOrder = async (data) => {
   await connectMongo();
-  const session = await mongoose.startSession();
-  session.startTransaction();
-
   const newOrder = await OrderModel.create(data);
-  console.log(newOrder);
+  if (newOrder?.email) {
+    const removeToCart = await cartModel.deleteOne({ email: newOrder?.email });
+    revalidateTag("cartLength");
+  }
+  return {
+    message: "Order created successfully",
+    status: "success",
+    id: newOrder._id.toString(),
+  };
 };
 
 export default placeOrder;
