@@ -8,9 +8,8 @@ import SearchInput from "./SearchInput";
 
 const Header = async () => {
   const session = await auth();
-  const serverUlr = process.env.SERVER_URL;
   const res = await fetch(
-    `${serverUlr}/cart/${session?.user?.id}?length=true`,
+    `https://lwskart-bice.vercel.app/api/cart/${session?.user?.id}?length=true`,
     {
       next: {
         tags: ["cartLength"],
@@ -19,7 +18,7 @@ const Header = async () => {
   );
   const lengthCart = await res.json();
   const wishlistRes = await fetch(
-    `${serverUlr}/wishlist/${session?.user?.id}`,
+    `https://lwskart-bice.vercel.app/api/wishlist/${session?.user?.id}`,
     {
       next: {
         tags: ["wishlistLength"],

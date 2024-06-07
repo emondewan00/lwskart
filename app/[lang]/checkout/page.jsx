@@ -9,12 +9,14 @@ const Checkout = async () => {
   if (!session?.user) {
     return redirect("/login");
   }
-  const serverUlr = process.env.SERVER_URL;
-  const cartList = await fetch(`${serverUlr}/cart/${session?.user?.id}`, {
-    next: {
-      tags: ["cartItems"],
-    },
-  });
+  const cartList = await fetch(
+    `https://lwskart-bice.vercel.app/api/cart/${session?.user?.id}`,
+    {
+      next: {
+        tags: ["cartItems"],
+      },
+    }
+  );
   const data = await cartList.json();
   const totalPrice = data?.items?.reduce(
     (sum, item) => item?.product_id?.price * item?.quantity + sum,

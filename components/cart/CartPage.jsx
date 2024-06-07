@@ -5,8 +5,7 @@ import EmptyCart from "./EmptyCartItems";
 
 const CartPage = async () => {
   const session = await auth();
-  const serverUlr = process.env.SERVER_URL;
-  const cartList = await fetch(`${serverUlr}/cart/${session?.user?.id}`, {
+  const cartList = await fetch(`https://lwskart-bice.vercel.app/api/cart/${session?.user?.id}`, {
     next: {
       tags: ["cartItems"],
     },
