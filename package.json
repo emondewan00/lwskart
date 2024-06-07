@@ -10,8 +10,6 @@
   },
   "dependencies": {
     "@auth/mongodb-adapter": "^3.1.0",
-    "@fileforge/client": "^0.1.15",
-    "@fileforge/react-print": "^0.1.141",
     "@formatjs/intl-localematcher": "^0.5.4",
     "bcrypt": "^5.1.1",
     "mongodb": "^6.6.2",

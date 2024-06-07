@@ -15,9 +15,7 @@ export const {
   session: {
     strategy: "jwt",
   },
-  pages: {
-    signIn: "/login",
-  },
+
   trustHost: true,
   secret: process.env.NEXTAUTH_SECRET,
   providers: [
