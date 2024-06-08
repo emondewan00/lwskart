@@ -1,308 +1,375 @@
-import Image from "next/image";
 import logo from "@/public/images/logo-white.svg";
-const Template = ({ data: { _doc } }) => {
-  console.log(_doc,"Template");
-  const subTotal = _doc?.items?.reduce(
-    (sum, item) => item?.product_id?.price * item?.quantity + sum,
+
+const Template = ({ data }) => {
+  const subTotal = data?.items?.reduce(
+    (sum, item) => (item?.product_id?.price || 0) * item?.quantity + sum,
     0
   );
   const { firstName, lastName, city, address, country, phone, zip } =
-    _doc?.shipping;
+    data?.shipping || {};
   const tax = subTotal * 0.05;
   const total = subTotal + tax;
-  const date = new Date(_doc?.createdAt).toLocaleDateString();
+  const date = new Date(data?.createdAt).toLocaleDateString();
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        padding: "2.5rem",
-        backgroundColor: "white",
-        boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-        borderRadius: "0.75rem",
-      }}
-    >
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <div>
-          {/* <Image src={logo} alt="logo" style={{ maxWidth: "100%" }} /> */}
-          <h1
-            style={{
-              marginTop: "0.5rem",
-              fontSize: "1.25rem",
-              fontWeight: "600",
-              color: "#3490dc",
-            }}
-          >
-            LWSkart
-          </h1>
-        </div>
-
-        <div style={{ textAlign: "right" }}>
-          <h2
-            style={{
-              fontSize: "1.875rem",
-              fontWeight: "600",
-              color: "#2d3748",
-            }}
-          >
-            Invoice #
-          </h2>
-          <span
-            style={{ marginTop: "0.25rem", display: "block", color: "#a0aec0" }}
-          >
-            {_doc?._id}
-          </span>
-          <address
-            style={{
-              marginTop: "1rem",
-              color: "#2d3748",
-              fontStyle: "normal",
-            }}
-          >
-            H 106/2, North Badda,
-            <br />
-            Badda, Dhaka - 1212
-            <br />
-            Bangladesh
-            <br />
-          </address>
-        </div>
-      </div>
-
+    <div style={{ width: "92%", maxWidth: "75%", margin: "auto" }}>
       <div
         style={{
-          marginTop: "2rem",
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: "1rem",
-        }}
-      >
-        <div>
-          <h3
-            style={{
-              fontSize: "1.125rem",
-              fontWeight: "600",
-              color: "#2d3748",
-            }}
-          >
-            Bill to:
-          </h3>
-          <h3
-            style={{
-              fontSize: "1.125rem",
-              fontWeight: "600",
-              color: "#2d3748",
-            }}
-          >
-            {firstName} {lastName}
-          </h3>
-          <address style={{ marginTop: "0.5rem", color: "#a0aec0" }}>
-            {address},
-            <br />
-            {city}, {zip},
-            <br />
-            {country}
-            <br />
-          </address>
-        </div>
-
-        <div style={{ textAlign: "right" }}>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "3fr 2fr",
-              gap: "0.5rem",
-            }}
-          >
-            <dl
-              style={{
-                display: "grid",
-                gridTemplateColumns: "3fr 2fr",
-                gap: "0.5rem",
-              }}
-            >
-              <dt style={{ fontWeight: "600", color: "#2d3748" }}>
-                Invoice date:
-              </dt>
-              <dd style={{ color: "#a0aec0" }}>{date}</dd>
-            </dl>
-          </div>
-        </div>
-      </div>
-
-      <div
-        style={{
-          marginTop: "1.5rem",
-          border: "1px solid #e2e8f0",
-          padding: "1rem",
-          borderRadius: "0.5rem",
           display: "flex",
           flexDirection: "column",
-          gap: "1rem",
+          padding: "40px",
+          backgroundColor: "white",
+          boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+          borderRadius: "10px",
         }}
       >
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <div>
+            <img src="logo.png" alt="logo" />
+            <h1
+              style={{
+                marginTop: "8px",
+                fontSize: "1.25rem",
+                fontWeight: "600",
+                color: "#1f2937",
+              }}
+            >
+              LWSkart
+            </h1>
+          </div>
+          <div style={{ textAlign: "end" }}>
+            <h2
+              style={{ fontSize: "2rem", fontWeight: "600", color: "#2d3748" }}
+            >
+              Invoice #
+            </h2>
+            <span
+              style={{ marginTop: "4px", display: "block", color: "#6b7280" }}
+            >
+              {data._id.toString()}
+            </span>
+            <address
+              style={{
+                marginTop: "16px",
+                fontStyle: "normal",
+                color: "#2d3748",
+              }}
+            >
+              H 106/2, North Badda,
+              <br />
+              Badda, Dhaka - 1212
+              <br />
+              Bangladesh
+              <br />
+            </address>
+          </div>
+        </div>
         <div
-          style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr" }}
+          style={{
+            marginTop: "32px",
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: "12px",
+          }}
+        >
+          <div>
+            <h3
+              style={{
+                fontSize: "1.125rem",
+                fontWeight: "600",
+                color: "#2d3748",
+              }}
+            >
+              Bill to:
+            </h3>
+            <h3
+              style={{
+                fontSize: "1.125rem",
+                fontWeight: "600",
+                color: "#2d3748",
+              }}
+            >
+              {firstName} {lastName}
+            </h3>
+            <address style={{ marginTop: "8px", color: "#6b7280" }}>
+              {address},<br />
+              {city},{zip},<br />
+              {country}
+              <br />
+            </address>
+          </div>
+          <div
+            style={{
+              textAlign: "end",
+              display: "flex",
+              flexDirection: "column",
+              gap: "8px",
+            }}
+          >
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(2, 1fr)",
+                gap: "12px",
+              }}
+            >
+              <dl
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "3fr 2fr",
+                  gap: "12px",
+                }}
+              >
+                <dt style={{ fontWeight: "600", color: "#2d3748" }}>
+                  Invoice date:
+                </dt>
+                <dd style={{ color: "#6b7280" }}>{date}</dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+        <div style={{ marginTop: "24px" }}>
+          <div
+            style={{
+              border: "1px solid #e5e7eb",
+              padding: "16px",
+              borderRadius: "10px",
+              display: "flex",
+              flexDirection: "column",
+              gap: "16px",
+            }}
+          >
+            <div
+              style={{
+                display: "none",
+                gridTemplateColumns: "2fr 1fr 1fr 1fr",
+              }}
+            >
+              <div
+                style={{
+                  gridColumn: "span 2",
+                  fontSize: "0.75rem",
+                  fontWeight: "500",
+                  color: "#6b7280",
+                  textTransform: "uppercase",
+                }}
+              >
+                Item
+              </div>
+              <div
+                style={{
+                  textAlign: "start",
+                  fontSize: "0.75rem",
+                  fontWeight: "500",
+                  color: "#6b7280",
+                  textTransform: "uppercase",
+                }}
+              >
+                Qty
+              </div>
+              <div
+                style={{
+                  textAlign: "start",
+                  fontSize: "0.75rem",
+                  fontWeight: "500",
+                  color: "#6b7280",
+                  textTransform: "uppercase",
+                }}
+              >
+                Rate
+              </div>
+              <div
+                style={{
+                  textAlign: "end",
+                  fontSize: "0.75rem",
+                  fontWeight: "500",
+                  color: "#6b7280",
+                  textTransform: "uppercase",
+                }}
+              >
+                Amount
+              </div>
+            </div>
+            <div
+              style={{ display: "none", borderBottom: "1px solid #e5e7eb" }}
+            ></div>
+            {data?.items?.map(({ _id, product_id, quantity }) => (
+              <div
+                key={_id.toString()}
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(3, 1fr)",
+                  gap: "8px",
+                }}
+              >
+                <div style={{ gridColumn: "span 2" }}>
+                  <h5
+                    style={{
+                      display: "none",
+                      fontSize: "0.75rem",
+                      fontWeight: "500",
+                      color: "#6b7280",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    Item
+                  </h5>
+                  <p style={{ fontWeight: "500", color: "#2d3748" }}>
+                    {product_id?.name}
+                  </p>
+                </div>
+                <div>
+                  <h5
+                    style={{
+                      display: "none",
+                      fontSize: "0.75rem",
+                      fontWeight: "500",
+                      color: "#6b7280",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    Qty
+                  </h5>
+                  <p style={{ color: "#2d3748" }}>{quantity}</p>
+                </div>
+                <div>
+                  <h5
+                    style={{
+                      display: "none",
+                      fontSize: "0.75rem",
+                      fontWeight: "500",
+                      color: "#6b7280",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    Rate
+                  </h5>
+                  <p style={{ color: "#2d3748" }}>
+                    {product_id?.discount_price}
+                  </p>
+                </div>
+                <div>
+                  <h5
+                    style={{
+                      display: "none",
+                      fontSize: "0.75rem",
+                      fontWeight: "500",
+                      color: "#6b7280",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    Amount
+                  </h5>
+                  <p style={{ textAlign: "end", color: "#2d3748" }}>
+                    ${(product_id?.discount_price * quantity).toFixed(2)}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div
+          style={{
+            marginTop: "32px",
+            display: "flex",
+            justifyContent: "flex-end",
+          }}
         >
           <div
             style={{
-              textTransform: "uppercase",
-              fontSize: "0.75rem",
-              fontWeight: "600",
-              color: "#a0aec0",
+              width: "100%",
+              maxWidth: "640px",
+              textAlign: "end",
+              display: "flex",
+              flexDirection: "column",
+              gap: "8px",
             }}
           >
-            Item
-          </div>
-          <div
-            style={{
-              textTransform: "uppercase",
-              fontSize: "0.75rem",
-              fontWeight: "600",
-              color: "#a0aec0",
-            }}
-          >
-            Qty
-          </div>
-          <div
-            style={{
-              textTransform: "uppercase",
-              fontSize: "0.75rem",
-              fontWeight: "600",
-              color: "#a0aec0",
-            }}
-          >
-            Rate
-          </div>
-          <div
-            style={{
-              textAlign: "right",
-              textTransform: "uppercase",
-              fontSize: "0.75rem",
-              fontWeight: "600",
-              color: "#a0aec0",
-            }}
-          >
-            Amount
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "3fr 2fr",
+                gap: "12px",
+              }}
+            >
+              <dl
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "3fr 2fr",
+                  gap: "12px",
+                }}
+              >
+                <dt style={{ fontWeight: "600", color: "#2d3748" }}>
+                  Subtotal:
+                </dt>
+                <dd style={{ color: "#6b7280" }}>${subTotal.toFixed(2)}</dd>
+              </dl>
+              <dl
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "3fr 2fr",
+                  gap: "12px",
+                }}
+              >
+                <dt style={{ fontWeight: "600", color: "#2d3748" }}>Total:</dt>
+                <dd style={{ color: "#6b7280" }}>${total.toFixed(2)}</dd>
+              </dl>
+              <dl
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "3fr 2fr",
+                  gap: "12px",
+                }}
+              >
+                <dt style={{ fontWeight: "600", color: "#2d3748" }}>Tax:</dt>
+                <dd style={{ color: "#6b7280" }}>${tax.toFixed(2)}</dd>
+              </dl>
+            </div>
           </div>
         </div>
-
-        {_doc?.items?.map(({ _id, product_id, quantity }) => (
-          <div
-            key={_id}
+        <div style={{ marginTop: "32px" }}>
+          <h4
             style={{
-              display: "grid",
-              gridTemplateColumns: "2fr 1fr 1fr 1fr",
-              gap: "1rem",
+              fontSize: "1.125rem",
+              fontWeight: "600",
+              color: "#2d3748",
             }}
           >
-            <div>
-              <p style={{ fontWeight: "600", color: "#2d3748" }}>
-                {product_id?.name}
-              </p>
-            </div>
-            <div>
-              <p style={{ color: "#2d3748" }}>{quantity}</p>
-            </div>
-            <div>
-              <p style={{ color: "#2d3748" }}>{product_id?.discount_price}</p>
-            </div>
-            <div>
-              <p style={{ textAlign: "right", color: "#2d3748" }}>
-                ${(product_id?.discount_price * quantity).toFixed(2)}
-              </p>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <div
-        style={{
-          marginTop: "2rem",
-          display: "flex",
-          justifyContent: "flex-end",
-        }}
-      >
-        <div style={{ maxWidth: "36rem", textAlign: "right" }}>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "3fr 2fr",
-              gap: "0.5rem",
-            }}
-          >
-            <dl
+            Thank you!
+          </h4>
+          <p style={{ color: "#6b7280" }}>
+            If you have any questions concerning this invoice, use the following
+            contact information:
+          </p>
+          <div style={{ marginTop: "8px" }}>
+            <p
               style={{
-                display: "grid",
-                gridTemplateColumns: "3fr 2fr",
-                gap: "0.5rem",
+                display: "block",
+                fontSize: "0.875rem",
+                fontWeight: "500",
+                color: "#2d3748",
               }}
             >
-              <dt style={{ fontWeight: "600", color: "#2d3748" }}>Subtotal:</dt>
-              <dd style={{ color: "#a0aec0" }}>${subTotal.toFixed(2)}</dd>
-            </dl>
-            <dl
+              miremon5222@gmail.com
+            </p>
+            <p
               style={{
-                display: "grid",
-                gridTemplateColumns: "3fr 2fr",
-                gap: "0.5rem",
+                display: "block",
+                fontSize: "0.875rem",
+                fontWeight: "500",
+                color: "#2d3748",
               }}
             >
-              <dt style={{ fontWeight: "600", color: "#2d3748" }}>Total:</dt>
-              <dd style={{ color: "#a0aec0" }}>${total.toFixed(2)}</dd>
-            </dl>
-            <dl
-              style={{
-                display: "grid",
-                gridTemplateColumns: "3fr 2fr",
-                gap: "0.5rem",
-              }}
-            >
-              <dt style={{ fontWeight: "600", color: "#2d3748" }}>Tax:</dt>
-              <dd style={{ color: "#a0aec0" }}>${tax.toFixed(2)}</dd>
-            </dl>
+              +880 1741-235222
+            </p>
           </div>
         </div>
-      </div>
-
-      <div style={{ marginTop: "2rem" }}>
-        <h4
-          style={{ fontSize: "1.125rem", fontWeight: "600", color: "#2d3748" }}
+        <p
+          style={{ marginTop: "20px", fontSize: "0.875rem", color: "#6b7280" }}
         >
-          Thank you!
-        </h4>
-        <p style={{ color: "#a0aec0" }}>
-          If you have any questions concerning this invoice, use the following
-          contact information:
+          © 2024 LWSkart.
         </p>
-        <div style={{ marginTop: "0.5rem" }}>
-          <p
-            style={{
-              fontSize: "0.875rem",
-              fontWeight: "600",
-              color: "#2d3748",
-            }}
-          >
-            miremon5222@gmail.com
-          </p>
-          <p
-            style={{
-              fontSize: "0.875rem",
-              fontWeight: "600",
-              color: "#2d3748",
-            }}
-          >
-            +880 1741-235222
-          </p>
-        </div>
       </div>
-
-      <p
-        style={{ marginTop: "1.25rem", fontSize: "0.875rem", color: "#a0aec0" }}
-      >
-        © 2024 LWSkart.
-      </p>
     </div>
   );
 };

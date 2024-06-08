@@ -1,5 +1,6 @@
 import Image from "next/image";
 import QuantityAdjust from "./QuantityAdjust";
+import getBase64 from "@/utils/getBlurData";
 
 const Card = async ({ item: { product_id, quantity } }) => {
   const { name, image, price, discount_price, category, quantities, _id } =

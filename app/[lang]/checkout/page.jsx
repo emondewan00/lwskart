@@ -35,7 +35,7 @@ const Checkout = async ({ params: { lang } }) => {
   } = await getDictionary(lang);
   return (
     <>
-      <BreadCrumb />
+      <BreadCrumb name={"checkout"} />
       <div className="container grid grid-cols-8 items-start pb-16 pt-4 gap-6">
         <CheckoutForm lang={labels} totalPrice={totalPrice} session={session} />
         <OrderSummary totalPrice={totalPrice} data={data} />
