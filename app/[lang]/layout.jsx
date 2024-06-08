@@ -3,14 +3,14 @@ import Footer from "@/components/shared/Footer";
 import Header from "@/components/shared/Header";
 import Navbar from "@/components/shared/Navbar";
 
-const Layout = ({ children }) => {
+const Layout = ({ children, params: { lang } }) => {
   return (
     <>
-      <Header />
-      <Navbar />
+      <Header lang={lang} />
+      <Navbar lang={lang} />
       {children}
-      <Footer />
-      <Copyright />
+      <Footer lang={lang} />
+      <Copyright lang={lang} />
     </>
   );
 };

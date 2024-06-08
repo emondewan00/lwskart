@@ -4,6 +4,7 @@ import Link from "next/link";
 import { FaSearch, FaStar } from "react-icons/fa";
 import AddToWishList from "./AddToWishList";
 import CartBTN from "./CartBTN";
+import getBase64 from "@/utils/getBlurData";
 
 const ProductCard = async ({ product }) => {
   const { _id, name, image, price, discount_price, rating, quantities } =
@@ -11,6 +12,7 @@ const ProductCard = async ({ product }) => {
   const r = Array(Math.round(rating)).fill(0);
   const session = await auth();
   const stringID = _id.toString();
+  const blurDataURL = await getBase64(image[0]);
   return (
     <div className="bg-white shadow rounded overflow-hidden group flex flex-col">
       <div className="relative">
@@ -19,6 +21,7 @@ const ProductCard = async ({ product }) => {
           height={250}
           src={`${image[0]}`}
           alt={name}
+          blurDataURL={blurDataURL}
           className="w-full"
         />
         <div

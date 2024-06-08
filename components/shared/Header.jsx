@@ -5,8 +5,10 @@ import { FaRegHeart, FaRegUser } from "react-icons/fa";
 import { BsBag } from "react-icons/bs";
 import { auth } from "@/auth";
 import SearchInput from "./SearchInput";
+import { getDictionary } from "@/app/[lang]/_dictionaries/getDictionary";
 
-const Header = async () => {
+const Header = async ({lang}) => {
+  const {headers} =await getDictionary(lang);
   const session = await auth();
   const res = await fetch(
     `https://lwskart-bice.vercel.app/api/cart/${session?.user?.id}?length=true`,
@@ -35,7 +37,7 @@ const Header = async () => {
         </Link>
 
         <div className="mx-auto">
-          <SearchInput />
+          <SearchInput lang={headers.search} />
         </div>
 
         <div className="flex items-center space-x-4 ">
@@ -46,7 +48,7 @@ const Header = async () => {
             <div className="text-2xl mx-auto">
               <FaRegHeart />
             </div>
-            <div className="text-xs leading-3">Wishlist</div>
+            <div className="text-xs leading-3">{headers?.wishlist}</div>
             <div className="absolute -right-1 -top-1 w-5 h-5 rounded-full flex items-center justify-center bg-primary text-white text-xs ">
               {lengthWishlist?.length || 0}
             </div>
@@ -58,7 +60,7 @@ const Header = async () => {
             <div className="text-2xl">
               <BsBag />
             </div>
-            <div className="text-xs leading-3">Cart</div>
+            <div className="text-xs leading-3">{headers?.cart}</div>
             <div className="absolute -right-3 -top-1 w-5 h-5 rounded-full flex items-center justify-center bg-primary text-white text-xs ">
               {lengthCart?.items?.length || 0}
             </div>

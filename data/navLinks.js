@@ -2,23 +2,23 @@ const navLinks = [
   {
     id: 1,
     href: "/",
-    title: "Home",
+    title: "home",
   },
   {
     id: 2,
     href: "/shop",
-    title: "Shop",
+    title: "shop",
   },
   {
     id: 3,
     href: "/",
-    title: "About us",
+    title: "about",
   },
 
   {
     id: 4,
     href: "/",
-    title: "Contact us",
+    title: "contact",
   },
 ];
 

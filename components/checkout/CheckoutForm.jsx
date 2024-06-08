@@ -1,9 +1,9 @@
 "use client";
-
 import placeOrder from "@/actions/placeOrder";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-const CheckoutForm = ({ session, totalPrice }) => {
+
+const CheckoutForm = ({ session, totalPrice, lang }) => {
   const [checkoutDetails, setCheckoutDetails] = useState({
     firstName: "",
     lastName: "",
@@ -15,12 +15,13 @@ const CheckoutForm = ({ session, totalPrice }) => {
     company: "",
     email: session?.user?.email || "",
   });
+  const {shippingAddress,city,email,phone,lastName,firstName} = lang;
   const router = useRouter();
   const [cartProducts, setCartProducts] = useState({});
   useEffect(() => {
     const getOrderItems = async () => {
       const orderItems = await fetch(
-        `https://lwskart-bice.vercel.app/api/cart/${session?.user?.id}?length=true`
+        `http://localhost:3000/api/cart/${session?.user?.id}?length=true`
       );
       const items = await orderItems.json();
       setCartProducts(items);
@@ -29,7 +30,7 @@ const CheckoutForm = ({ session, totalPrice }) => {
     const getData = async () => {
       try {
         const res = await fetch(
-          `https://lwskart-bice.vercel.app/api/user?email=${session.user.email}`
+          `http://localhost:3000/api/user?email=${session?.user?.email}`
         );
         if (!res.ok) {
           throw new Error("Failed to fetch user data");
@@ -68,7 +69,7 @@ const CheckoutForm = ({ session, totalPrice }) => {
           <div className="grid grid-cols-2 gap-4">
             <div>
               <label htmlFor="first-name" className="text-gray-600">
-                First Name <span className="text-primary">*</span>
+                {firstName} <span className="text-primary">*</span>
               </label>
               <input
                 type="text"
@@ -87,7 +88,7 @@ const CheckoutForm = ({ session, totalPrice }) => {
             </div>
             <div>
               <label htmlFor="last-name" className="text-gray-600">
-                Last Name <span className="text-primary">*</span>
+               {lastName} <span className="text-primary">*</span>
               </label>
               <input
                 type="text"
@@ -124,7 +125,7 @@ const CheckoutForm = ({ session, totalPrice }) => {
           </div>
           <div>
             <label htmlFor="city" className="text-gray-600">
-              city
+              {city}
             </label>
             <input
               type="text"
@@ -180,7 +181,7 @@ const CheckoutForm = ({ session, totalPrice }) => {
           </div>
           <div>
             <label htmlFor="address" className="text-gray-600">
-              Full Address
+              {shippingAddress}
             </label>
             <input
               type="text"
@@ -199,7 +200,7 @@ const CheckoutForm = ({ session, totalPrice }) => {
 
           <div>
             <label htmlFor="phone" className="text-gray-600">
-              Phone number
+             {phone}
             </label>
             <input
               type="text"
@@ -217,7 +218,7 @@ const CheckoutForm = ({ session, totalPrice }) => {
           </div>
           <div>
             <label htmlFor="email" className="text-gray-600">
-              Email address
+              {email}
             </label>
             <input
               type="email"

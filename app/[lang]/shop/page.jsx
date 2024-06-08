@@ -4,6 +4,13 @@ import DrawerToggle from "@/components/shop/DrawerToggle";
 import Products from "@/components/shop/Products";
 import Sidebar from "@/components/shop/Sidebar";
 
+export async function generateMetadata() {
+  return {
+    title: "Shop",
+    description: "Shop",
+  };
+}
+
 const ShopPage = ({ searchParams }) => {
   return (
     <>

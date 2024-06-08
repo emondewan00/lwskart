@@ -3,8 +3,16 @@ import CheckoutForm from "@/components/checkout/CheckoutForm";
 import OrderSummary from "@/components/checkout/OrderSummary";
 import BreadCrumb from "@/components/shared/BreadCrumb";
 import { redirect } from "next/navigation";
+import { getDictionary } from "../_dictionaries/getDictionary";
 
-const Checkout = async () => {
+export async function generateMetadata() {
+  return {
+    title: "Checkout",
+    description: "Checkout",
+  };
+}
+
+const Checkout = async ({ params: { lang } }) => {
   const session = await auth();
   if (!session?.user) {
     return redirect("/login");
@@ -22,11 +30,14 @@ const Checkout = async () => {
     (sum, item) => item?.product_id?.price * item?.quantity + sum,
     0
   );
+  const {
+    checkout: { labels, orderSummary },
+  } = await getDictionary(lang);
   return (
     <>
       <BreadCrumb />
       <div className="container grid grid-cols-8 items-start pb-16 pt-4 gap-6">
-        <CheckoutForm totalPrice={totalPrice} session={session} />
+        <CheckoutForm lang={labels} totalPrice={totalPrice} session={session} />
         <OrderSummary totalPrice={totalPrice} data={data} />
       </div>
     </>

@@ -7,7 +7,8 @@ import { FaStar } from "react-icons/fa";
 import { auth } from "@/auth";
 import ShareButtons from "./ShareButtons";
 import CartAndWishBtn from "./CartAndWishBtn";
-const ProductDetail = async ({ id }) => {
+import { getDictionary } from "@/app/[lang]/_dictionaries/getDictionary";
+const ProductDetail = async ({ id, lang }) => {
   const session = await auth();
   await connectMongo();
   const product = await productModel.findOne({ _id: new Types.ObjectId(id) });
@@ -27,7 +28,7 @@ const ProductDetail = async ({ id }) => {
   if (!product) {
     notFound();
   }
-
+  const { productDetails } = await getDictionary(lang);
   const a = Array(Math.round(rating)).fill(0);
   return (
     <div className="container grid grid-cols-2 gap-6">
@@ -74,21 +75,27 @@ const ProductDetail = async ({ id }) => {
           <p className="text-gray-800 font-semibold space-x-2">
             <span>Availability: </span>
             {quantities ? (
-              <span className="text-green-600">In Stock</span>
+              <span className="text-green-600">In Stock {(quantities)}</span>
             ) : (
               <span className="text-red-600">Out of Stock</span>
             )}
           </p>
           <p className="space-x-2">
-            <span className="text-gray-800 font-semibold">Brand: </span>
+            <span className="text-gray-800 font-semibold">
+              {productDetails.brand}:
+            </span>
             <span className="text-gray-600">{brand}</span>
           </p>
           <p className="space-x-2">
-            <span className="text-gray-800 font-semibold">Category: </span>
+            <span className="text-gray-800 font-semibold">
+              {productDetails.category}:
+            </span>
             <span className="text-gray-600 capitalize">{category}</span>
           </p>
           <p className="space-x-2">
-            <span className="text-gray-800 font-semibold">SKU: </span>
+            <span className="text-gray-800 font-semibold">
+              {productDetails.sku}:
+            </span>
             <span className="text-gray-600 uppercase">{sku}</span>
           </p>
         </div>
@@ -100,11 +107,7 @@ const ProductDetail = async ({ id }) => {
         </div>
         <p className="mt-4 text-gray-600">{description}</p>
 
-   
-        <CartAndWishBtn
-          product={{  id, quantities }}
-          user={session?.user}
-        />
+        <CartAndWishBtn product={{ id, quantities }} user={session?.user} />
 
         <ShareButtons name={name} />
       </div>

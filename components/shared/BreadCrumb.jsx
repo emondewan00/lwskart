@@ -9,7 +9,7 @@ const BreadCrumb = ({ name }) => {
       <span className="text-sm text-gray-400">
         <FaChevronRight />
       </span>
-      <p className="text-gray-600 font-medium">Account</p>
+      <p className="text-gray-600 font-medium capitalize">{name}</p>
     </div>
   );
 };

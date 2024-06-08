@@ -2,18 +2,24 @@ import Card from "./Card";
 import CartSummary from "./CartSummary";
 import { auth } from "@/auth";
 import EmptyCart from "./EmptyCartItems";
+import { getDictionary } from "@/app/[lang]/_dictionaries/getDictionary";
 
-const CartPage = async () => {
+const CartPage = async ({ lang }) => {
   const session = await auth();
-  const cartList = await fetch(`https://lwskart-bice.vercel.app/api/cart/${session?.user?.id}`, {
-    next: {
-      tags: ["cartItems"],
-    },
-  });
+  const cartList = await fetch(
+    `https://lwskart-bice.vercel.app/api/cart/${session?.user?.id}`,
+    {
+      next: {
+        tags: ["cartItems"],
+      },
+    }
+  );
   const data = await cartList.json();
 
+  const {cart:{empty,checkout,deleteMessage}} = await getDictionary(lang);
+
   if (!data?.items?.length) {
-    return <EmptyCart />;
+    return <EmptyCart lang={empty} />;
   }
 
   return (
@@ -35,7 +41,7 @@ const CartPage = async () => {
           ))}
         </div>
         {/* Cart Summary */}
-        <CartSummary data={data} />
+        <CartSummary data={data} lang={checkout} />
       </div>
     </div>
   );

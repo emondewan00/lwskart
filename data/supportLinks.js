@@ -2,22 +2,22 @@ const supportLinks = [
   {
     id: 1,
     href: "/",
-    title: "Pricing",
+    title: "pricing",
   },
   {
     id: 2,
     href: "/",
-    title: "Documentation",
+    title: "documentation",
   },
   {
     id: 3,
     href: "/",
-    title: "Guides",
+    title: "guides",
   },
   {
     id: 4,
     href: "/",
-    title: "API Status",
+    title: "api",
   },
 ];
 

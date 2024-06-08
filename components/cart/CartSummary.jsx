@@ -1,6 +1,6 @@
 import CartPaymentAndTrmsAndPlace from "./CartPaymentAndTrmsAndPlace";
 
-const CartSummary = ({ data }) => {
+const CartSummary = ({ data,lang }) => {
   const totalPrice = data?.items?.reduce(
     (sum, item) => item?.product_id?.price * item?.quantity + sum,
     0
@@ -43,7 +43,7 @@ const CartSummary = ({ data }) => {
           <p>${totalPrice?.toFixed(2)}</p>
         </div>
 
-        <CartPaymentAndTrmsAndPlace />
+        <CartPaymentAndTrmsAndPlace lang={lang} />
       </div>
     </>
   );

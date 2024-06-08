@@ -4,19 +4,31 @@ import PersonalProfile from "@/components/account/PersonalProfile";
 import ShippingAddress from "@/components/account/ShippingAddress";
 import BreadCrumb from "@/components/shared/BreadCrumb";
 import { redirect } from "next/navigation";
+import { getDictionary } from "../_dictionaries/getDictionary";
 
-const Account = async () => {
+export async function generateMetadata() {
+  return {
+    title: "My Account",
+    description: "My Account",
+  };
+}
+
+const Account = async ({ params: { lang } }) => {
   const session = await auth();
   if (!session?.user) {
     return redirect("/login");
   }
+  const {
+    profile: { edit, billing, shipping, personal },
+  } = await getDictionary(lang);
+
   return (
     <>
-      <BreadCrumb />
+      <BreadCrumb name={"Account"} />
       <div className="container  items-start gap-6 pt-4 pb-16">
         <div className=" grid grid-cols-3 gap-4 mx-auto max-w-5xl">
-          <PersonalProfile user={session?.user} />
-          <ShippingAddress />
+          <PersonalProfile lang={personal} user={session?.user} />
+          <ShippingAddress lang={{ shipping, edit }} />
           <BillingAddress />
         </div>
       </div>

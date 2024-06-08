@@ -4,10 +4,13 @@ import { FaBars } from "react-icons/fa";
 import navLinks from "@/data/navLinks";
 import categoryLinks from "@/data/categoryLinks";
 import { auth } from "@/auth";
-import { logout } from "@/actions/user";
+import { logout as logOutHandler } from "@/actions/user";
+import { getDictionary } from "@/app/[lang]/_dictionaries/getDictionary";
 
-const Navbar = async () => {
+const Navbar = async ({ lang }) => {
   const session = await auth();
+  const {navBar:{category,login,logout,...rest}} = await getDictionary(lang);
+
   return (
     <nav className="bg-gray-800">
       <div className="container flex">
@@ -16,7 +19,7 @@ const Navbar = async () => {
             <FaBars />
           </span>
           <span className="capitalize ml-2 text-white hidden">
-            All Categories
+            {category}
           </span>
 
           <div
@@ -52,18 +55,18 @@ const Navbar = async () => {
                 href={link.href}
                 className="text-gray-200 hover:text-white transition"
               >
-                {link.title}
+                {rest[link.title]}
               </Link>
             ))}
           </div>
 
           {session ? (
-            <form action={logout}>
+            <form action={logOutHandler}>
               <button
                 type="submit"
                 className="text-gray-200 hover:text-white transition"
               >
-                Log Out
+                {logout}
               </button>
             </form>
           ) : (
@@ -71,7 +74,7 @@ const Navbar = async () => {
               href="/login"
               className="text-gray-200 hover:text-white transition"
             >
-              Login
+            {login}
             </Link>
           )}
         </div>

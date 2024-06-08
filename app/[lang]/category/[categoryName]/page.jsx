@@ -4,9 +4,14 @@ import FilterBySize from "@/components/shop/FilterBySize";
 import FilterByPrice from "@/components/shop/FilterbyPrice";
 import filterData from "@/data/categoryFilterData";
 import getFilterData from "@/lib/getFilterData";
+
+
+
+
+
 const CategoryPage =async ({ params: { categoryName } }) => {
   const data = await getFilterData(categoryName)
-  console.log(data)
+ 
 
   return (
     <>

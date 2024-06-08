@@ -37,7 +37,6 @@ const cartAction = async ({ user, product, incOrDecNum, type }) => {
     user_id: new Types.ObjectId(user_id),
   });
 
-  console.log(cart, updateProductQuantity, "hello world");
   //   if cart is not available
   if (!cart) {
     const newCart = await cartModel.create({
@@ -68,7 +67,6 @@ const cartAction = async ({ user, product, incOrDecNum, type }) => {
   revalidateTag("cartLength");
   // Save the cart
   await cart.save();
-  console.log(cart, updateProductInventory, "hello world");
   return { message: "Product added successfully" };
 };
 export default cartAction;

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-const CartPaymentAndTrmsAndPlace = () => {
+const CartPaymentAndTrmsAndPlace = ({lang}) => {
   const [termsAndCond, setTermsAndCond] = useState(false);
   const router = useRouter();
   const onPlaced = () => {
@@ -58,7 +58,7 @@ const CartPaymentAndTrmsAndPlace = () => {
           termsAndCond ? "cursor-pointer" : "cursor-not-allowed"
         }`}
       >
-       CheckOut
+      {lang}
       </button>
     </>
   );

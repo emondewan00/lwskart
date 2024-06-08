@@ -1,16 +1,17 @@
 import Image from "next/image";
 import QuantityAdjust from "./QuantityAdjust";
 
-const Card = ({ item: { product_id, quantity } }) => {
+const Card = async ({ item: { product_id, quantity } }) => {
   const { name, image, price, discount_price, category, quantities, _id } =
     product_id;
-
+  const blurDataURL = await getBase64(image[0]);
   return (
     <div className=" flex gap-x-4 ">
       <Image
         src={image[0]}
         width={120}
         height={120}
+        blurDataURL={blurDataURL}
         alt="Product Image"
         className=" object-cover "
       />
@@ -29,7 +30,6 @@ const Card = ({ item: { product_id, quantity } }) => {
       </div>
 
       <div className="flex justify-between flex-col-reverse lg:flex lg:items-center ml-auto lg:flex-row lg:justify-normal">
-      
         <QuantityAdjust product={{ quantity, _id, quantities }} />
       </div>
     </div>

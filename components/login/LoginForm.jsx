@@ -6,7 +6,6 @@ import FacebookLogButton from "../shared/FacebookLogButton";
 import GoogleLogButton from "../shared/GoogleLogButton";
 const LoginForm = () => {
   const [state, dispatch] = useFormState(login, null);
-  console.log(state, "state");
 
   return (
     <div className="contain py-16">

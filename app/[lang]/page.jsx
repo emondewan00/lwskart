@@ -6,16 +6,25 @@ import NewArrival from "@/components/home/NewArrival";
 import Product from "@/components/home/Product";
 import CardSkeleton from "@/components/shared/CardSkeleton";
 import { Suspense } from "react";
+import { getDictionary } from "./_dictionaries/getDictionary";
 
-export default async function Home() {
+export async function generateMetadata() {
+  return {
+    title: "Home",
+    description: "Home Page",
+  };
+}
+
+export default async function Home({ params: { lang } }) {
+  const {home:{category,newArrival,trend}} = await getDictionary(lang);
   return (
     <>
-      <Banner />
-      <Features />
-      <Categories />
+      <Banner lang={lang} />
+      <Features lang={lang} />
+      <Categories lang={category} />
       <div className="container pb-16">
         <h2 className="text-2xl font-medium text-gray-800 uppercase mb-6">
-          top new arrival
+        {newArrival}
         </h2>
         <Suspense
           fallback={
@@ -31,7 +40,7 @@ export default async function Home() {
       <Ads />
       <div className="container pb-16">
         <h2 className="text-2xl font-medium text-gray-800 uppercase mb-6">
-          TRENDING PRODUCTS
+        {trend}
         </h2>
         <Suspense
           fallback={
